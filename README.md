@@ -1,4 +1,6 @@
 # Running dapnr repo
+
+After logging into the farmshare server
 ```
 1. $source {tcsh/bash}_setup.csh
 2. $innovus
