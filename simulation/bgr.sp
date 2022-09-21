@@ -16,9 +16,9 @@ v2 porst 0 pulse(0V 1.8V 10us 0us 0us 5us)
     option temp=27
     tran 10ns 20us 0us
     * .print tran v(bg) v(VDD) v(porst)
-    write ./result/post_bandgap_real_27degc_vbg.raw v(bg)
-    write ./result/post_bandgap_real_27degc_VDD.raw v(VDD)
-    write ./result/post_bandgap_real_27degc_porst.raw v(porst)
+    write ./result/bgr_tran_vbg.raw v(bg)
+    write ./result/bgr_tran_vdd.raw v(VDD)
+    write ./result/bgr_tran_porst.raw v(porst)
     quit
 .endc
 .END
