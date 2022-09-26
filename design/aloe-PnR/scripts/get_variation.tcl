@@ -55,8 +55,4 @@ set r6_7 [inst_dist amp/M6 amp/M7]
 set tmp [expr (double($r6_7)/$rr)**2]
 set s6_7  [expr 2.9*($u6+$u7)*(1-$tmp)]
 
-<<<<<<< HEAD
 set variation_sum [expr $s1_2 + $s1_3 + $s2_3+ $s4_8 + $s4_13 + $s8_13 + $s5_9 + $s6_7 ]
-=======
-set variation_sum [expr $s1_2 + $s1_3 + $s2_3+ $s4_8 + $s4_13 + $s8_13 + $s5_9 + $s6_7 ]
->>>>>>> calculate variation
