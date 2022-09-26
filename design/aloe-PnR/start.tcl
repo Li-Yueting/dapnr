@@ -1,6 +1,6 @@
 ## PARAMETERS ##
 set design_name "bgr_top"
-set ::env(base_dir) "/home/users/lyt1314/ee372/aloe-sky130/bgr_top/interface"
+set ::env(base_dir) "/home/users/lyt1314/SUMMER/dapnr/interface"
 set ::env(min_netweight) 0
 set ::env(max_netweight) 30
 set ::env(pop_size) 40
@@ -9,7 +9,7 @@ set ::env(num_of_net) 40
 # set ::env(cross_prob) 0.3
 set ::env(mutate_prob) 0.3
 set ::env(alpha) 0.95
-set ::env(ngen) 200
+set ::env(ngen) 5
 #----------------------------------------------------------
 source scripts/interface.tcl
 source scripts/ini.tcl

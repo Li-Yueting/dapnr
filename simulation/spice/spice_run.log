@@ -1,0 +1,37 @@
+
+No compatibility mode selected!
+
+
+Circuit: mismatch coefficients - bgr circuit 
+
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+
+No. of Data Rows : 1
+Transfer function information:
+transfer_function = -1.53742e-04
+output_impedance_at_v(vbg) = 5.795854e+01
+vtest#input_impedance = 9.223372e+18
+
+                      mismatch coefficients - bgr circuit 
+                      Transfer Function  Sun Sep 25 20:42:09  2022
+--------------------------------------------------------------------------------
+Index   Transfer_functi output_impedanc vtest#Input_imp 
+--------------------------------------------------------------------------------
+0	-1.53742e-04	5.795854e+01	9.223372e+18	
+
+
+Total analysis time (seconds) = 0.030291
+
+Total CPU time (seconds) = 35.955 
+
+Total DRAM available = 1031610.980 MB.
+DRAM currently available = 785816.043 MB.
+Maximum ngspice program size =  722.465 MB.
+Current ngspice program size =  663.781 MB.
+
+Shared ngspice pages =    9.652 MB.
+Text (code) pages =    8.875 MB.
+Stack = 0 bytes.
+Library pages =  654.906 MB.
+

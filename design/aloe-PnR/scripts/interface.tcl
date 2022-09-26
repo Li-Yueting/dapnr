@@ -16,7 +16,7 @@ proc population_pnr {base_dir gen design_name} {
         source -verbose scripts/loadfp.tcl
         source -verbose [file join $dir "netweight.tcl"]
         source -verbose scripts/pnr.tcl
-        set net_total_length [layout_summary $dir $design_name]
+        set net_total_length [layout_summary $dir $design_name] 
         set objective [expr 5000 - $net_total_length]
         lappend fitness $objective
     }
@@ -88,6 +88,8 @@ proc layout_summary {outdir design_name} {
     }
     # Objective 3 - Symmetry 
     # Objective 4 - Variation
+    source scripts/get_variation.tcl
+    
 
     # OUTPUT
     set fp [open $filename w+] ;# open the filename for writing
