@@ -14,7 +14,7 @@ import sys
 from mflowgen.components import Graph, Step
 def construct():
   g = Graph()
-  g.sys_path.append('/home/users/lyt1314/ee372/aloe-sky130')
+  g.sys_path.append('/home/users/lyt1314/Courses/ee372/aloe-sky130')
   #-----------------------------------------------------------------------
   # Parameters
   #-----------------------------------------------------------------------
