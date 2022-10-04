@@ -9,7 +9,8 @@ set ::env(num_of_net) 40
 # set ::env(cross_prob) 0.3
 set ::env(mutate_prob) 0.3
 set ::env(alpha) 0.95
-set ::env(ngen) 5
+set ::env(ngen) 150
+set ::env(correlation_distance) 1000
 #----------------------------------------------------------
 source scripts/interface.tcl
 source scripts/ini.tcl
@@ -20,11 +21,11 @@ while {$env(gen)<$env(ngen)} {
     puts "**************************************"
     puts "current generation is --> $env(gen)"
     puts "**************************************"
-    set fitness [population_pnr $env(base_dir) $env(gen) $design_name] ;# fitness (objective function) 
+    set fitness [population_pnr $env(base_dir) $env(gen) $design_name $env(correlation_distance) $env(pop_size)] ;# fitness (objective function) 
     python scripts/ga.py ;# genes evolve 
     incr env(gen)
 }
-set fitness [population_pnr $env(base_dir) $env(gen) $design_name] ;# fitness of last genes
+set fitness [population_pnr $env(base_dir) $env(gen) $design_name $env(correlation_distance) $env(pop_size)] ;# fitness of last genes
 set last_best [tcl::mathfunc::max {*}$fitness]
 puts "best fitness of the last genes is: $last_best"
 python scripts/last_best.py

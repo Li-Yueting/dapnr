@@ -18,9 +18,9 @@ proc inst_dist {arg1 arg2} {
     return $r_dist
 }
 
-
-# rr=relative distance 100/1000; s = spacial-related variation; u = spatical-unrelated variation
-set rr 100 ;# assign 100 here, can be 1000 as well
+proc get_variation {correlation_distance} {
+# rr=correlation distance 100/1000; s = spacial-related variation; u = spatical-unrelated variation
+set rr $correlation_distance ;# assign 100 here, can be 1000 as well
 lassign { 2.61369E-14 8.53761E-20 3.38669E-11 3.91232E-12 4.93449E-11 3.38984E-13 5.82471E-15 9.86377E-11 9.50904E-13 6.82247E-18} u1 u2 u3 u4 u5 u6 u7 u8 u9 u13
 # M1 -M2 
 set r1_2 [inst_dist CM/M1 CM/M2]
@@ -56,3 +56,5 @@ set tmp [expr (double($r6_7)/$rr)**2]
 set s6_7  [expr 2.9*($u6+$u7)*(1-$tmp)]
 
 set variation_sum [expr $s1_2 + $s1_3 + $s2_3+ $s4_8 + $s4_13 + $s8_13 + $s5_9 + $s6_7 ]
+return $variation_sum
+}
