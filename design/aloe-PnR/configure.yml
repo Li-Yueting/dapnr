@@ -1,9 +1,9 @@
 #=========================================================================
 # Cadence Innovus
 #=========================================================================
-# Author : Christopher Torng
-# Date   : October 30, 2019
-#
+# Author : Yueting Li
+# Date   : October 2, 2022
+
 
 name: aloe-PnR
 
@@ -29,14 +29,7 @@ outputs:
 #-------------------------------------------------------------------------
 
 commands:
-  # - ln -sf inputs/innovus-foundation-flow
-  # - rm inputs/innovus-foundation-flow/INNOVUS/run_place.tcl
-  # - cp cust_run_place.tcl inputs/innovus-foundation-flow/INNOVUS/run_place.tcl
-
-  # - echo $0
-  # # - python run_pnr_optimization.py
   - innovus -overwrite -64 -nowin -init start.tcl -cpus 8 -log logs/run.log
-  # - bash parallel_run.sh
 
   # Outputs
   - cd outputs

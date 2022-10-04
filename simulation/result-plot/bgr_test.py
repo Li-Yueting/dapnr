@@ -19,10 +19,9 @@ with open("ic_values.txt", "w+") as f:
         value.append(data[i][0][-1])
         # print(data[i][0][-1])
         # print("+================")
-print(count)
-print(name[1:])
-print(value[1:])
 
+
+# print(data)
 """
 time = data["time"][0]
 vdd = data["v(vdd)"][0]

@@ -2,6 +2,7 @@ transient analysis - bgr circuit
 
 .lib /farmshare/home/classes/ee/372/PDKs/open_pdks_1.0.313/sky130/sky130A/libs.tech/ngspice/sky130.lib.spice tt
 .include device_extracted.sp
+
 ************ BGR Circuit **************************************************************************************************
 Xsky130_asc_res_xhigh_po_2p85_1_7 sky130_asc_res_xhigh_po_2p85_1_7/Rin sky130_asc_res_xhigh_po_2p85_1_6/Rin
 + VDD VSS sky130_asc_res_xhigh_po_2p85_1
@@ -12,7 +13,7 @@ Xsky130_asc_res_xhigh_po_2p85_1_9 sky130_asc_res_xhigh_po_2p85_1_9/Rin sky130_as
 Xsky130_asc_pfet_01v8_lvt_60_0 sky130_asc_cap_mim_m3_1_4/Cout VDD bgr VSS VDD sky130_asc_pfet_01v8_lvt_60
 Xsky130_asc_pfet_01v8_lvt_60_1 sky130_asc_cap_mim_m3_1_4/Cout VDD sky130_asc_nfet_01v8_lvt_9_2/GATE
 + VSS VDD sky130_asc_pfet_01v8_lvt_60
-Xsky130_asc_pfet_01v8_lvt_60_2 sky130_asc_cap_mim_m3_1_4/Cout VDD sky130_asc_cap_mim_m3_1_9/Cin
+Xsky130_asc_pfet_01v8_lvt_60_2 G_new VDD sky130_asc_cap_mim_m3_1_9/Cin
 + VSS VDD sky130_asc_pfet_01v8_lvt_60
 Xsky130_asc_res_xhigh_po_2p85_1_30 sky130_asc_cap_mim_m3_1_9/Cin sky130_asc_res_xhigh_po_2p85_1_29/Rin
 + VDD VSS sky130_asc_res_xhigh_po_2p85_1
@@ -64,10 +65,8 @@ Xsky130_asc_res_xhigh_po_2p85_1_18 sky130_asc_nfet_01v8_lvt_9_2/GATE sky130_asc_
 + VDD VSS sky130_asc_res_xhigh_po_2p85_1
 Xsky130_asc_res_xhigh_po_2p85_1_29 sky130_asc_res_xhigh_po_2p85_1_29/Rin sky130_asc_res_xhigh_po_2p85_1_28/Rin
 + VDD VSS sky130_asc_res_xhigh_po_2p85_1
-Xsky130_asc_pfet_01v8_lvt_6_0 G_new VDD sky130_asc_cap_mim_m3_1_4/Cout
+Xsky130_asc_pfet_01v8_lvt_6_0 sky130_asc_pfet_01v8_lvt_6_1/GATE VDD sky130_asc_cap_mim_m3_1_4/Cout
 + VSS VDD sky130_asc_pfet_01v8_lvt_6
-* input voltage here
-vtest sky130_asc_pfet_01v8_lvt_6_1/GATE G_new 0
 Xsky130_asc_nfet_01v8_lvt_9_1 sky130_asc_cap_mim_m3_1_9/Cin sky130_asc_nfet_01v8_lvt_1_1/DRAIN
 + sky130_asc_cap_mim_m3_1_4/Cout VDD VSS sky130_asc_nfet_01v8_lvt_9
 Xsky130_asc_pfet_01v8_lvt_6_1 sky130_asc_pfet_01v8_lvt_6_1/GATE VDD sky130_asc_pfet_01v8_lvt_6_1/GATE
@@ -115,14 +114,29 @@ Xsky130_asc_res_xhigh_po_2p85_1_5 sky130_asc_res_xhigh_po_2p85_1_5/Rin sky130_as
 Xsky130_asc_res_xhigh_po_2p85_1_6 sky130_asc_res_xhigh_po_2p85_1_6/Rin sky130_asc_res_xhigh_po_2p85_1_5/Rin
 + VDD VSS sky130_asc_res_xhigh_po_2p85_1
 **************************************************************************************************************************
-v1 VDD 0 pwl(0 0 5us 1.8v)
+
+*SIN(0 0.01 100MEG 0 0 0)
+v1 VDD 0 1.8
 v2 VSS 0 0
-v3 porst 0 pulse(0V 1.8V 10us 0us 0us 5us)
-.option temp =27
-.control 
-    save all
-    tran 10ns 50us 0us
-    run
-    write ../raw-result/bgr_tran_all.raw all
-.endc
+v3 porst 0 pulse(0V 1.8V 0us 0us 0us 5us)
+
+vtest  sky130_asc_cap_mim_m3_1_4/Cout  G_new DC 1e-5
+.tran 10ns 30us 0us uic
+.print tran v(bgr)
+
+* .control 
+*     .option temp =27
+*     tran 10ns 30us 0us uic
+*     run
+*     write ../raw-result/bgr_tran_all.raw all
+* .endc
+* .print tran v(bgr)
+* .print tran v(sky130_asc_cap_mim_m3_1_9/Cin)
+* .print tran v(G_new)
+* .print tran vtest
+* .options ITL1=400 ITL4=500 SRCSTEPS=100 RELTOL=0.01 METHOD=GEAR
+* .ac dec 10 0.0001 1000 
+* .nodeset v(bgr)=9.648903e-01
+* .op
+* .print ac vm(bgr)
 .END
