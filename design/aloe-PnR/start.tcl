@@ -9,7 +9,7 @@ set ::env(num_of_net) 40
 # set ::env(cross_prob) 0.3
 set ::env(mutate_prob) 0.3
 set ::env(alpha) 0.95
-set ::env(ngen) 150
+set ::env(ngen) 25
 set ::env(correlation_distance) 1000
 #----------------------------------------------------------
 source scripts/interface.tcl

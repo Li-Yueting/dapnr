@@ -149,11 +149,6 @@ def construct():
   # g.connect_by_name( iflow,           signoff         )
   # Core place and route flow
   g.connect_by_name( init,            pnr               )
-  # g.connect_by_name( place,           power           )
-  # g.connect_by_name( route,           postroute       )
-  # g.connect_by_name( postroute,       signoff         )
-  # g.connect_by_name( pnr,       signoff         )
-  g.connect_by_name(  pnr,            pointer         )
   g.connect_by_name(  pointer,        gdsmerge        )
   # g.connect_by_name( signoff,         gdsmerge        )
   # DRC, LVS, timing signoff and power signoff
@@ -170,8 +165,6 @@ def construct():
   g.connect_by_name( gdsmerge,        magic_gds2spice )
   g.connect_by_name( pointer,         netgen_lvs_gds  )
   g.connect_by_name( pointer,         netgen_lvs_gds_device)
-  # g.connect_by_name( signoff,         netgen_lvs_gds  )
-  # g.connect_by_name( signoff,         netgen_lvs_gds_device  )
   g.connect_by_name( magic_gds2spice, netgen_lvs_gds  )
   g.connect_by_name( magic_gds2spice, netgen_lvs_gds_device  )
   # LVS comparision using Calibre
@@ -180,20 +173,6 @@ def construct():
   g.connect_by_name( magic_gds2spice, calibre_lvs     )
   # g.connect_by_name( pointer,         post_sim        )
   g.connect_by_name( adk,             post_sim        )
-  # g.connect_by_name( signoff,         macro         )
-  #g.connect_by_name( gdsmerge,           klayout)
-  # Timing signoff
-  # g.connect( signoff.o('design.spef.gz'),   pt_timing.i('design.spef.gz' ) )
-  # g.connect( signoff.o('design.vcs.v'  ),   pt_timing.i('design.vcs.v'   ) )
-  # g.connect( dc.o(     'design.sdc'    ),   pt_timing.i('design.pt.sdc'  ) )
-  # Gate level simulation
-  # g.connect( signoff.o('design.spef.gz'),   pt_power_rtl.i('design.spef.gz' ) )
-  # g.connect( signoff.o('design.vcs.v'  ),   pt_power_rtl.i('design.vcs.v'   ) )
-  # g.connect( dc.o(     'design.sdc'    ),   pt_power_rtl.i('design.pt.sdc'  ) )
-  # g.connect( dc.o(     'design.namemap'),   pt_power_rtl.i('design.namemap' ) )
-  # g.connect( signoff.o('design.spef.gz'),   pt_power_gl.i('design.spef.gz' ) )
-  # g.connect( signoff.o('design.vcs.v'  ),   pt_power_gl.i('design.vcs.v'   ) )
-  # g.connect( dc.o(     'design.sdc'    ),   pt_power_gl.i('design.pt.sdc'  ) )
   #-----------------------------------------------------------------------
   # Parameterize
   #-----------------------------------------------------------------------
