@@ -17,7 +17,7 @@ inputs:
   - design.sdc
   - design.checkpoint
   - design.fp
-  - design.fpr
+  - design.fp.spr
   - design.def
   - design.v
 

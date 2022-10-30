@@ -1,5 +1,5 @@
 # _name_        interface.tcl
-# _function_    exam values of 4 objective functions: area, netweight, netlength, mismatch variation 
+# _function_    exam values of 2 objective functions: area, netweight, netlength, mismatch variation 
 # _author_      Yueting Li
 # _date_        08-30-2022
 
@@ -7,6 +7,19 @@ proc interface {outdir design_name} {
     signoff $outdir $design_name
     layout_summary $outdir $design_name
 }
+
+proc norm {lst x_min x_max} {
+    foreach item $lst { lappend r [expr ($item - $x_min)/($x_max-$x_min)]}
+    return $r
+}
+
+proc list_sum {lst1 lst2} {
+    set ll [llength $lst1]
+    for {set n 0} {$n < $ll} {incr n} {
+        lappend res [expr -[lindex $lst1 $n]-[lindex $lst2 $n]]
+    }
+    return $res
+}   
 
 proc population_pnr {base_dir gen design_name correlation_distance pop_size} {
     set dirs [glob -directory $base_dir -type d gen-$gen*] 
@@ -20,12 +33,19 @@ proc population_pnr {base_dir gen design_name correlation_distance pop_size} {
         source -verbose $dir/netweight.tcl
         source -verbose scripts/pnr.tcl
         lassign [layout_summary $dir $design_name $correlation_distance] net_total_length total_variation
-        set objective [expr - 100*$total_variation - 0.001*$net_total_length]
-        #- $net_total_length 
-        lappend fitness $objective
+        lappend nl $net_total_length
+        lappend va $total_variation
         incr number
     }
-    # only signoff for best subject of popution for each generation
+    set nl_max [format %.3f [tcl::mathfunc::max {*}$nl]]
+    set nl_min [format %.3f [tcl::mathfunc::min {*}$nl]]
+    set va_max [format %.3f [tcl::mathfunc::max {*}$va]]
+    set va_min [format %.3f [tcl::mathfunc::min {*}$va]]
+    set nl_norm [norm $nl $nl_min $nl_max]
+    set va_norm [norm $va $va_min $va_max]
+    puts $nl_norm
+    puts $va_norm
+    set fitness [list_sum $nl_norm $va_norm]
     set best [tcl::mathfunc::max {*}$fitness]
     set best_index [lsearch $fitness $best]
     set best_dir $base_dir/gen-$gen-id-$best_index
@@ -167,50 +187,33 @@ proc inst_dist {arg1 arg2} {
 }
 
 proc get_variation {correlation_distance} {
-# rr=correlation distance 100/1000; s = spacial-related variation; u = spatical-unrelated variation
-set rr $correlation_distance ;# assign 100 here, can be 1000 as well
-lassign {1.09E-03 1.63E-02 8.99E-03 4.94E-02 1.26E-01 2.50E-03 2.50E-03 5.17E-02 1.26E-01 5.11E-06} u1 u2 u3 u4 u5 u6 u7 u8 u9 u13
-# M1 -M2 
-set r1_2 [inst_dist CM/M1 CM/M2]
-set tmp [expr (double($r1_2)/$rr)**2]
-set tmp1 [expr exp(-$tmp)]
-set s1_2  [expr 2.9*($u1+$u2)*(1-$tmp1)]
-# M1-M3
-set r1_3 [inst_dist CM/M1 CM/M3]
-set tmp [expr (double($r1_3)/$rr)**2]
-set tmp1 [expr exp(-$tmp)]
-set s1_3  [expr 2.9*($u1+$u3)*(1-$tmp1)]
-# M2-M3
-set r2_3 [inst_dist CM/M2 CM/M3]
-set tmp [expr (double($r2_3)/$rr)**2]
-set tmp1 [expr exp(-$tmp)]
-set s2_3  [expr 2.9*($u2+$u3)*(1-$tmp1)]
-# M4-M8
-set r4_8 [inst_dist amp/M4 amp/M8]
-set tmp [expr (double($r4_8)/$rr)**2]
-set tmp1 [expr exp(-$tmp)]
-set s4_8  [expr 2.9*($u4+$u8)*(1-$tmp1)]
-# M4-13
-set r4_13 [inst_dist amp/M4 amp/M13]
-set tmp [expr (double($r4_13)/$rr)**2]
-set tmp1 [expr exp(-$tmp)]
-set s4_13  [expr 2.9*($u4+$u13)*(1-$tmp1)]
-# M8-13
-set r8_13 [inst_dist amp/M8 amp/M13]
-set tmp [expr (double($r8_13)/$rr)**2]
-set tmp1 [expr exp(-$tmp)]
-set s8_13  [expr 2.9*($u8+$u13)*(1-$tmp1)]
-# M5-M9
-set r5_9 [inst_dist amp/M5 amp/M9]
-set tmp [expr (double($r5_9)/$rr)**2]
-set tmp1 [expr exp(-$tmp)]
-set s5_9  [expr 2.9*($u5+$u9)*(1-$tmp1)]
-# M6-M7
-set r6_7 [inst_dist amp/M6 amp/M7]
-set tmp [expr (double($r6_7)/$rr)**2]
-set tmp1 [expr exp(-$tmp)]
-set s6_7  [expr 2.9*($u6+$u7)*(1-$tmp1)]
-set variation_sum [expr $s1_2 + $s1_3 + $s2_3+ $s4_8 + $s4_13 + $s8_13 + $s5_9 + $s6_7 ]
-puts "variation_sum: $variation_sum"
-return $variation_sum
+    lassign {1.09E-03 1.63E-02 8.99E-03 4.94E-02 1.26E-01 2.50E-03 2.50E-03 5.17E-02 1.26E-01 5.11E-06} u1 u2 u3 u4 u5 u6 u7 u8 u9 u13
+    # M1 -M2 
+    set r1_2 [inst_dist CM/M1 CM/M2]
+    set s1_2  [expr ($u1+$u2)*$r1_2]
+    # M1-M3
+    set r1_3 [inst_dist CM/M1 CM/M3]
+    set s1_3  [expr ($u1+$u3)*$r1_3]
+    # M2-M3
+    set r2_3 [inst_dist CM/M2 CM/M3]
+    set s2_3  [expr ($u2+$u3)*$r2_3]
+    # M4-M8
+    set r4_8 [inst_dist amp/M4 amp/M8]
+    set s4_8  [expr ($u4+$u8)*$r4_8]
+    # M4-13
+    set r4_13 [inst_dist amp/M4 amp/M13]
+    set s4_13  [expr ($u4+$u13)*$r4_13]
+    # M8-13
+    set r8_13 [inst_dist amp/M8 amp/M13]
+    set s8_13  [expr ($u8+$u13)*$r8_13]
+    # M5-M9
+    set r5_9 [inst_dist amp/M5 amp/M9]
+    set s5_9  [expr ($u5+$u9)*$r5_9]
+    # M6-M7
+    set r6_7 [inst_dist amp/M6 amp/M7]
+    set s6_7  [expr ($u6+$u7)*$r6_7]
+
+    set variation_sum [expr $s1_2 + $s1_3 + $s2_3+ $s4_8 + $s4_13 + $s8_13 + $s5_9 + $s6_7 ]
+    puts "variation_sum: $variation_sum"
+    return $variation_sum
 }
