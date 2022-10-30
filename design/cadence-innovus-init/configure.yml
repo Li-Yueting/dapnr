@@ -21,7 +21,7 @@ inputs:
 outputs:
   - design.checkpoint
   - design.fp
-  - design.fp.fpr
+  - design.fp.spr
   - design.def
   - design.v
 #-------------------------------------------------------------------------
@@ -39,7 +39,7 @@ commands:
   - cp ../inputs/design.v design.v
   - ln -sf ../checkpoints/design.checkpoint
   - ln -sf ../design.fp
-  - ln -sf ../design.fpr
+  - ln -sf ../design.fp.spr
   - ln -sf ../design.def
 
 #-------------------------------------------------------------------------
