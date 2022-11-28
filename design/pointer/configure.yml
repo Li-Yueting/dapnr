@@ -29,7 +29,7 @@ outputs:
 
 commands:
   - ln -sf inputs/innovus-foundation-flow
-  - cp -a ../../interface/gen-6-id-8/. .
+  - cp -a ../../interface/gen-9-id-47/.  .
   - cd outputs
   - ln -sf ../checkpoints/design.checkpoint
   - ln -sf ../*.gds.gz            design.gds.gz
@@ -62,8 +62,7 @@ preconditions:
   # - assert File( 'inputs/design.gds.gz' )
 
 postconditions:
-
-  - assert File( 'outputs/design_merged.gds' )
+  - assert File( './outputs/design_merged.gds' )
 
   # Duplicate structures
   #

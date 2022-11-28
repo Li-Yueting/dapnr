@@ -8,10 +8,23 @@ proc interface {outdir design_name} {
     layout_summary $outdir $design_name
 }
 
-proc norm {lst x_min x_max} {
-    foreach item $lst { lappend r [expr ($item - $x_min)/($x_max-$x_min)]}
+proc nl_normalization {lst} {
+    foreach item $lst { lappend r [expr ($item)/(4007.545 - 2282.2)]}
     return $r
 }
+proc mds_normalization {lst} {
+    foreach item $lst { lappend r [expr ($item - 179683)/(680759.817 - 179683.836)]}
+    return $r
+}
+# proc nl_normalization {lst} {
+#     foreach item $lst { lappend r [expr $item/4007.545]}
+#     return $r
+# }
+
+# proc mds_normalization {lst} {
+#     foreach item $lst { lappend r [expr $item/680759.817]}
+#     return $r
+# }
 
 proc list_sum {lst1 lst2} {
     set ll [llength $lst1]
@@ -21,7 +34,7 @@ proc list_sum {lst1 lst2} {
     return $res
 }   
 
-proc population_pnr {base_dir gen design_name correlation_distance pop_size} {
+proc population_pnr {base_dir gen design_name pop_size} {
     set dirs [glob -directory $base_dir -type d gen-$gen*] 
     # puts $dirs
     set fitness [list]
@@ -32,20 +45,22 @@ proc population_pnr {base_dir gen design_name correlation_distance pop_size} {
         set dir $base_dir/gen-$gen-id-$number
         source -verbose $dir/netweight.tcl
         source -verbose scripts/pnr.tcl
-        lassign [layout_summary $dir $design_name $correlation_distance] net_total_length total_variation
+        lassign [layout_summary $dir $design_name] net_total_length matching_distance_score
         lappend nl $net_total_length
-        lappend va $total_variation
+        lappend mds $matching_distance_score
         incr number
     }
-    set nl_max [format %.3f [tcl::mathfunc::max {*}$nl]]
-    set nl_min [format %.3f [tcl::mathfunc::min {*}$nl]]
-    set va_max [format %.3f [tcl::mathfunc::max {*}$va]]
-    set va_min [format %.3f [tcl::mathfunc::min {*}$va]]
-    set nl_norm [norm $nl $nl_min $nl_max]
-    set va_norm [norm $va $va_min $va_max]
-    puts $nl_norm
-    puts $va_norm
-    set fitness [list_sum $nl_norm $va_norm]
+    # set nl_max [format %.3f [tcl::mathfunc::max {*}$nl]]
+    # set nl_min [format %.3f [tcl::mathfunc::min {*}$nl]]
+    # set mds_max [format %.3f [tcl::mathfunc::max {*}$mds]]
+    # set mds_min [format %.3f [tcl::mathfunc::min {*}$mds]]
+    # puts "nl range: $nl_min $nl_max"
+    # puts "mds range: $mds_min $mds_max"
+    set nl_norm [nl_normalization $nl]
+    set mds_norm [mds_normalization $mds]
+    # puts $nl_norm
+    # puts $mds_norm
+    set fitness [list_sum $nl_norm $mds_norm]
     set best [tcl::mathfunc::max {*}$fitness]
     set best_index [lsearch $fitness $best]
     set best_dir $base_dir/gen-$gen-id-$best_index
@@ -84,9 +99,9 @@ proc signoff {outdir design_name} {
     defOut -routing $outdir/$design_name.def.gz
 } 
 
-proc layout_summary {outdir design_name correlation_distance} {
+proc layout_summary {outdir design_name} {
     set filename [file join $outdir "layoutSum.txt"]
-    # Objective 1 - Area & Utilization
+    # Objective 0 - Area & Utilization (already optimized in floorplan step)
     set chip_area [dbget top.fplan.area]
     set chip_core_box [dbGet top.fPlan.corebox]
     set llx [lindex [lindex $chip_core_box 0] 0]
@@ -100,7 +115,7 @@ proc layout_summary {outdir design_name correlation_distance} {
     }
     set core_utilization [expr $std_area/$chip_core_area]
     set chip_utilization [expr $std_area/$chip_area] 
-    # Objective 2 - Net Length & Weight
+    # Objective 1 - Total Net Length
     set net_name [dbGet top.nets.name] ;#net name list
     set net_weight [dbGet top.nets.weight] ;# net weight list 
     set net_length [list] ;#net length list
@@ -111,10 +126,10 @@ proc layout_summary {outdir design_name correlation_distance} {
         lappend net_length $length
         set net_total_length [expr $net_total_length + $length]
     }
-    # Objective 3 - Symmetry 
-    # Objective 4 - Variation
-    set total_variation [get_variation $correlation_distance]
-    set rr $correlation_distance ;# assign 100 here, can be 1000 as well
+    
+    # Objective 2 - Matching Distance Score
+    set mds [get_matching_distance_score]
+    # set rr $correlation_distance ;# assign 100 here, can be 1000 as well
     lassign {1.09E-03 1.63E-02 8.99E-03 4.94E-02 1.26E-01 2.50E-03 2.50E-03 5.17E-02 1.26E-01 5.11E-06} u1 u2 u3 u4 u5 u6 u7 u8 u9 u13
     set r1_2 [inst_dist CM/M1 CM/M2]
     set r1_3 [inst_dist CM/M1 CM/M3]
@@ -136,12 +151,13 @@ proc layout_summary {outdir design_name correlation_distance} {
         puts $fp "net_total_length: $net_total_length"
         puts $fp "core_utilization: $core_utilization"
         puts $fp "chip_utilization: $chip_utilization"
-        puts $fp "total_variation: $total_variation"
+        puts $fp "matching_distance_score: $mds"
         puts $fp "----------------------------------------------------"
         puts $fp [format "%-20s %-20s %-20s" "NetName" "NetWeight" "NetLength"]
         for {set i 0} {$i< [llength $net_name]} {incr i} {
             puts $fp [format "%-20s %-20s %-20s" [lindex $net_name $i] [lindex $net_weight $i] [lindex $net_length $i]]
         }
+        puts $fp "----------------------------------------------------"
         puts $fp [format "%-20s %-20s" "Instance" "Distance"]
         puts $fp [format "%-20s %-20s" r1_2 $r1_2]
         puts $fp [format "%-20s %-20s" r1_3 $r1_3]
@@ -155,7 +171,7 @@ proc layout_summary {outdir design_name correlation_distance} {
         # puts $fp "net_weight: $net_weight"
         # puts $fp "net_length: $net_length"
     close $fp
-    return "$net_total_length $total_variation"
+    return "$net_total_length $mds"
 }
 
 proc netLength {netName} {
@@ -186,34 +202,34 @@ proc inst_dist {arg1 arg2} {
     return $r_dist
 }
 
-proc get_variation {correlation_distance} {
-    lassign {1.09E-03 1.63E-02 8.99E-03 4.94E-02 1.26E-01 2.50E-03 2.50E-03 5.17E-02 1.26E-01 5.11E-06} u1 u2 u3 u4 u5 u6 u7 u8 u9 u13
-    # M1 -M2 
+proc get_matching_distance_score {} {
+    lassign {5.1 19.79 14.68 3.44 5.12 0.08 0.08 3.52 5.11 0.07} sc1 sc2 sc3 sc4 sc5 sc6 sc7 sc8 sc9 sc13
+    # M1 - M2 
     set r1_2 [inst_dist CM/M1 CM/M2]
-    set s1_2  [expr ($u1+$u2)*$r1_2]
+    set mds1_2  [expr ($sc1+$sc2)*($r1_2**2)]
     # M1-M3
     set r1_3 [inst_dist CM/M1 CM/M3]
-    set s1_3  [expr ($u1+$u3)*$r1_3]
+    set mds1_3  [expr ($sc1+$sc3)*($r1_3**2)]
     # M2-M3
     set r2_3 [inst_dist CM/M2 CM/M3]
-    set s2_3  [expr ($u2+$u3)*$r2_3]
+    set mds2_3  [expr ($sc2+$sc3)*($r2_3**2)]
     # M4-M8
     set r4_8 [inst_dist amp/M4 amp/M8]
-    set s4_8  [expr ($u4+$u8)*$r4_8]
+    set mds4_8  [expr ($sc4+$sc8)*($r4_8**2)]
     # M4-13
     set r4_13 [inst_dist amp/M4 amp/M13]
-    set s4_13  [expr ($u4+$u13)*$r4_13]
+    set mds4_13  [expr ($sc4+$sc13)*($r4_13**2)]
     # M8-13
     set r8_13 [inst_dist amp/M8 amp/M13]
-    set s8_13  [expr ($u8+$u13)*$r8_13]
+    set mds8_13  [expr ($sc8+$sc13)*($r8_13**2)]
     # M5-M9
     set r5_9 [inst_dist amp/M5 amp/M9]
-    set s5_9  [expr ($u5+$u9)*$r5_9]
+    set mds5_9  [expr ($sc5+$sc9)*($r5_9**2)]
     # M6-M7
     set r6_7 [inst_dist amp/M6 amp/M7]
-    set s6_7  [expr ($u6+$u7)*$r6_7]
+    set mds6_7  [expr ($sc6+$sc7)*($r6_7**2)]
 
-    set variation_sum [expr $s1_2 + $s1_3 + $s2_3+ $s4_8 + $s4_13 + $s8_13 + $s5_9 + $s6_7 ]
-    puts "variation_sum: $variation_sum"
-    return $variation_sum
+    set mds_sum [expr $mds1_2 + $mds1_3 + $mds2_3+ $mds4_8 + $mds4_13 + $mds8_13 + $mds5_9 + $mds6_7 ]
+    puts "matching_distance_score_sum: $mds_sum"
+    return $mds_sum
 }
