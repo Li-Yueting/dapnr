@@ -5,8 +5,11 @@ V {}
 S {}
 E {}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
+=======
+>>>>>>> 4468f9c87dd51c53fc72031b427f3ba5b36fe69e
 N 230 70 290 70 { lab=#net1}
 N 190 230 330 230 { lab=#net2}
 N 190 100 190 150 { lab=#net1}
@@ -91,6 +94,9 @@ N 1130 20 1130 50 {}
 N 1130 110 1130 150 {}
 N 1090 80 1090 120 {}
 C {xschem_sky130/sky130_fd_pr/nfet_01v8.sym} 170 230 0 0 {name=M1
+=======
+<<<<<<< HEAD
+>>>>>>> 4468f9c87dd51c53fc72031b427f3ba5b36fe69e
 =======
 >>>>>>> 4468f9c87dd51c53fc72031b427f3ba5b36fe69e
 N 250 140 310 140 { lab=#net1}
@@ -179,6 +185,10 @@ N 1110 150 1110 190 { lab=#net3}
 N 1150 250 1170 250 { lab=V(OUT)}
 C {xschem_sky130/sky130_fd_pr/nfet_01v8.sym} 190 300 0 0 {name=M1
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 910734a2 (??)
+>>>>>>> 4468f9c87dd51c53fc72031b427f3ba5b36fe69e
 =======
 >>>>>>> 910734a2 (??)
 >>>>>>> 4468f9c87dd51c53fc72031b427f3ba5b36fe69e
@@ -196,13 +206,19 @@ model=nfet_01v8
 spiceprefix=X
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 C {xschem_sky130/sky130_fd_pr/pfet3_01v8.sym} 330 140 0 0 {name=M2
 =======
 <<<<<<< HEAD
+=======
+>>>>>>> 4468f9c87dd51c53fc72031b427f3ba5b36fe69e
 C {xschem_sky130/sky130_fd_pr/pfet3_01v8.sym} 310 70 0 0 {name=M2
 =======
 C {xschem_sky130/sky130_fd_pr/pfet3_01v8.sym} 330 140 0 0 {name=M2
 >>>>>>> 910734a2 (??)
+<<<<<<< HEAD
+>>>>>>> 4468f9c87dd51c53fc72031b427f3ba5b36fe69e
+=======
 >>>>>>> 4468f9c87dd51c53fc72031b427f3ba5b36fe69e
 L=0.15
 W=1
@@ -219,13 +235,19 @@ model=pfet_01v8
 spiceprefix=X
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 C {xschem_sky130/sky130_fd_pr/pfet3_01v8.sym} 230 140 2 0 {name=M3
 =======
 <<<<<<< HEAD
+=======
+>>>>>>> 4468f9c87dd51c53fc72031b427f3ba5b36fe69e
 C {xschem_sky130/sky130_fd_pr/pfet3_01v8.sym} 210 70 2 0 {name=M3
 =======
 C {xschem_sky130/sky130_fd_pr/pfet3_01v8.sym} 230 140 2 0 {name=M3
 >>>>>>> 910734a2 (??)
+<<<<<<< HEAD
+>>>>>>> 4468f9c87dd51c53fc72031b427f3ba5b36fe69e
+=======
 >>>>>>> 4468f9c87dd51c53fc72031b427f3ba5b36fe69e
 L=0.15
 W=1
@@ -242,13 +264,19 @@ model=pfet_01v8
 spiceprefix=X
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 C {xschem_sky130/sky130_fd_pr/nfet_01v8.sym} 370 300 2 0 {name=M4
 =======
 <<<<<<< HEAD
+=======
+>>>>>>> 4468f9c87dd51c53fc72031b427f3ba5b36fe69e
 C {xschem_sky130/sky130_fd_pr/nfet_01v8.sym} 350 230 2 0 {name=M4
 =======
 C {xschem_sky130/sky130_fd_pr/nfet_01v8.sym} 370 300 2 0 {name=M4
 >>>>>>> 910734a2 (??)
+<<<<<<< HEAD
+>>>>>>> 4468f9c87dd51c53fc72031b427f3ba5b36fe69e
+=======
 >>>>>>> 4468f9c87dd51c53fc72031b427f3ba5b36fe69e
 L=0.15
 W=1
@@ -264,13 +292,19 @@ model=nfet_01v8
 spiceprefix=X
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 C {xschem_sky130/sky130_fd_pr/pfet3_01v8.sym} 440 150 0 0 {name=M5
 =======
 <<<<<<< HEAD
+=======
+>>>>>>> 4468f9c87dd51c53fc72031b427f3ba5b36fe69e
 C {xschem_sky130/sky130_fd_pr/pfet3_01v8.sym} 420 80 0 0 {name=M5
 =======
 C {xschem_sky130/sky130_fd_pr/pfet3_01v8.sym} 440 150 0 0 {name=M5
 >>>>>>> 910734a2 (??)
+<<<<<<< HEAD
+>>>>>>> 4468f9c87dd51c53fc72031b427f3ba5b36fe69e
+=======
 >>>>>>> 4468f9c87dd51c53fc72031b427f3ba5b36fe69e
 L=0.15
 W=1
@@ -287,13 +321,19 @@ model=pfet_01v8
 spiceprefix=X
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 C {xschem_sky130/sky130_fd_pr/pfet3_01v8.sym} 530 240 0 0 {name=M6
 =======
 <<<<<<< HEAD
+=======
+>>>>>>> 4468f9c87dd51c53fc72031b427f3ba5b36fe69e
 C {xschem_sky130/sky130_fd_pr/pfet3_01v8.sym} 510 170 0 0 {name=M6
 =======
 C {xschem_sky130/sky130_fd_pr/pfet3_01v8.sym} 530 240 0 0 {name=M6
 >>>>>>> 910734a2 (??)
+<<<<<<< HEAD
+>>>>>>> 4468f9c87dd51c53fc72031b427f3ba5b36fe69e
+=======
 >>>>>>> 4468f9c87dd51c53fc72031b427f3ba5b36fe69e
 L=0.15
 W=1
@@ -310,13 +350,19 @@ model=pfet_01v8
 spiceprefix=X
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 C {xschem_sky130/sky130_fd_pr/pfet3_01v8.sym} 730 150 0 0 {name=M7
 =======
 <<<<<<< HEAD
+=======
+>>>>>>> 4468f9c87dd51c53fc72031b427f3ba5b36fe69e
 C {xschem_sky130/sky130_fd_pr/pfet3_01v8.sym} 710 80 0 0 {name=M7
 =======
 C {xschem_sky130/sky130_fd_pr/pfet3_01v8.sym} 730 150 0 0 {name=M7
 >>>>>>> 910734a2 (??)
+<<<<<<< HEAD
+>>>>>>> 4468f9c87dd51c53fc72031b427f3ba5b36fe69e
+=======
 >>>>>>> 4468f9c87dd51c53fc72031b427f3ba5b36fe69e
 L=0.15
 W=1
@@ -333,13 +379,19 @@ model=pfet_01v8
 spiceprefix=X
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 C {xschem_sky130/sky130_fd_pr/pfet3_01v8.sym} 840 150 0 0 {name=M8
 =======
 <<<<<<< HEAD
+=======
+>>>>>>> 4468f9c87dd51c53fc72031b427f3ba5b36fe69e
 C {xschem_sky130/sky130_fd_pr/pfet3_01v8.sym} 820 80 0 0 {name=M8
 =======
 C {xschem_sky130/sky130_fd_pr/pfet3_01v8.sym} 840 150 0 0 {name=M8
 >>>>>>> 910734a2 (??)
+<<<<<<< HEAD
+>>>>>>> 4468f9c87dd51c53fc72031b427f3ba5b36fe69e
+=======
 >>>>>>> 4468f9c87dd51c53fc72031b427f3ba5b36fe69e
 L=0.15
 W=1
@@ -356,13 +408,19 @@ model=pfet_01v8
 spiceprefix=X
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 C {xschem_sky130/sky130_fd_pr/pfet3_01v8.sym} 1130 150 0 0 {name=M9
 =======
 <<<<<<< HEAD
+=======
+>>>>>>> 4468f9c87dd51c53fc72031b427f3ba5b36fe69e
 C {xschem_sky130/sky130_fd_pr/pfet3_01v8.sym} 1110 80 0 0 {name=M9
 =======
 C {xschem_sky130/sky130_fd_pr/pfet3_01v8.sym} 1130 150 0 0 {name=M9
 >>>>>>> 910734a2 (??)
+<<<<<<< HEAD
+>>>>>>> 4468f9c87dd51c53fc72031b427f3ba5b36fe69e
+=======
 >>>>>>> 4468f9c87dd51c53fc72031b427f3ba5b36fe69e
 L=0.15
 W=1
@@ -378,11 +436,14 @@ sa=0 sb=0 sd=0
 model=pfet_01v8
 spiceprefix=X
 }
+<<<<<<< HEAD
 <<<<<<< HEAD
 C {xschem_sky130/sky130_fd_pr/cap_mim_m3_1.sym} 970 150 0 0 {name=C1 model=cap_mim_m3_1 W=1 L=1 MF=1 spiceprefix=X}
 C {xschem_sky130/sky130_fd_pr/nfet_01v8.sym} 440 510 0 0 {name=M11
 =======
 <<<<<<< HEAD
+=======
+>>>>>>> 4468f9c87dd51c53fc72031b427f3ba5b36fe69e
 C {xschem_sky130/sky130_fd_pr/cap_mim_m3_1.sym} 950 80 0 0 {name=C1 model=cap_mim_m3_1 W=1 L=1 MF=1 spiceprefix=X}
 C {xschem_sky130/sky130_fd_pr/pfet3_01v8.sym} 1000 180 0 0 {name=M10
 L=0.15
@@ -404,6 +465,9 @@ C {xschem_sky130/sky130_fd_pr/nfet_01v8.sym} 420 440 0 0 {name=M11
 C {xschem_sky130/sky130_fd_pr/cap_mim_m3_1.sym} 970 150 0 0 {name=C1 model=cap_mim_m3_1 W=1 L=1 MF=1 spiceprefix=X}
 C {xschem_sky130/sky130_fd_pr/nfet_01v8.sym} 440 510 0 0 {name=M11
 >>>>>>> 910734a2 (??)
+<<<<<<< HEAD
+>>>>>>> 4468f9c87dd51c53fc72031b427f3ba5b36fe69e
+=======
 >>>>>>> 4468f9c87dd51c53fc72031b427f3ba5b36fe69e
 L=0.15
 W=1
@@ -419,13 +483,19 @@ model=nfet_01v8
 spiceprefix=X
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 C {xschem_sky130/sky130_fd_pr/nfet_01v8.sym} 300 510 2 0 {name=M12
 =======
 <<<<<<< HEAD
+=======
+>>>>>>> 4468f9c87dd51c53fc72031b427f3ba5b36fe69e
 C {xschem_sky130/sky130_fd_pr/nfet_01v8.sym} 280 440 2 0 {name=M12
 =======
 C {xschem_sky130/sky130_fd_pr/nfet_01v8.sym} 300 510 2 0 {name=M12
 >>>>>>> 910734a2 (??)
+<<<<<<< HEAD
+>>>>>>> 4468f9c87dd51c53fc72031b427f3ba5b36fe69e
+=======
 >>>>>>> 4468f9c87dd51c53fc72031b427f3ba5b36fe69e
 L=0.15
 W=1
@@ -440,23 +510,30 @@ sa=0 sb=0 sd=0
 model=nfet_01v8
 spiceprefix=X
 }
+<<<<<<< HEAD
 <<<<<<< HEAD
 C {xschem_sky130/sky130_fd_pr/cap_mim_m3_1.sym} 550 330 0 0 {name=C2 model=cap_mim_m3_1 W=1 L=1 MF=1 spiceprefix=X}
 C {xschem_sky130/sky130_fd_pr/res_xhigh_po_2p85.sym} 620 410 0 0 {name=R1
 =======
 <<<<<<< HEAD
+=======
+>>>>>>> 4468f9c87dd51c53fc72031b427f3ba5b36fe69e
 C {xschem_sky130/sky130_fd_pr/cap_mim_m3_1.sym} 530 260 0 0 {name=C2 model=cap_mim_m3_1 W=1 L=1 MF=1 spiceprefix=X}
 C {xschem_sky130/sky130_fd_pr/res_xhigh_po_2p85.sym} 600 340 0 0 {name=R1
 =======
 C {xschem_sky130/sky130_fd_pr/cap_mim_m3_1.sym} 550 330 0 0 {name=C2 model=cap_mim_m3_1 W=1 L=1 MF=1 spiceprefix=X}
 C {xschem_sky130/sky130_fd_pr/res_xhigh_po_2p85.sym} 620 410 0 0 {name=R1
 >>>>>>> 910734a2 (??)
+<<<<<<< HEAD
+>>>>>>> 4468f9c87dd51c53fc72031b427f3ba5b36fe69e
+=======
 >>>>>>> 4468f9c87dd51c53fc72031b427f3ba5b36fe69e
 W=2.85
 L=5
 model=res_xhigh_po_2p85
 spiceprefix=X
 mult=1}
+<<<<<<< HEAD
 <<<<<<< HEAD
 C {xschem_sky130/sky130_fd_pr/pnp_05v5.sym} 730 390 0 0 {name=Q1
 =======
@@ -473,6 +550,16 @@ spiceprefix=X
 <<<<<<< HEAD
 C {xschem_sky130/sky130_fd_pr/res_xhigh_po_2p85.sym} 860 310 0 0 {name=R2
 =======
+=======
+C {xschem_sky130/sky130_fd_pr/pnp_05v5.sym} 710 320 0 0 {name=Q1
+model=pnp_05v5_W3p40L3p40
+spiceprefix=X
+}
+C {xschem_sky130/sky130_fd_pr/pnp_05v5.sym} 820 320 0 0 {name=Q2
+model=pnp_05v5_W3p40L3p40
+spiceprefix=X
+}
+>>>>>>> 4468f9c87dd51c53fc72031b427f3ba5b36fe69e
 C {xschem_sky130/sky130_fd_pr/res_xhigh_po_2p85.sym} 840 240 0 0 {name=R2
 =======
 C {xschem_sky130/sky130_fd_pr/pnp_05v5.sym} 730 390 0 0 {name=Q1
@@ -485,6 +572,9 @@ spiceprefix=X
 }
 C {xschem_sky130/sky130_fd_pr/res_xhigh_po_2p85.sym} 860 310 0 0 {name=R2
 >>>>>>> 910734a2 (??)
+<<<<<<< HEAD
+>>>>>>> 4468f9c87dd51c53fc72031b427f3ba5b36fe69e
+=======
 >>>>>>> 4468f9c87dd51c53fc72031b427f3ba5b36fe69e
 W=2.85
 L=5
@@ -492,13 +582,19 @@ model=res_xhigh_po_2p85
 spiceprefix=X
 mult=1}
 <<<<<<< HEAD
+<<<<<<< HEAD
 C {xschem_sky130/sky130_fd_pr/res_xhigh_po_2p85.sym} 930 420 0 0 {name=R3
 =======
 <<<<<<< HEAD
+=======
+>>>>>>> 4468f9c87dd51c53fc72031b427f3ba5b36fe69e
 C {xschem_sky130/sky130_fd_pr/res_xhigh_po_2p85.sym} 910 350 0 0 {name=R3
 =======
 C {xschem_sky130/sky130_fd_pr/res_xhigh_po_2p85.sym} 930 420 0 0 {name=R3
 >>>>>>> 910734a2 (??)
+<<<<<<< HEAD
+>>>>>>> 4468f9c87dd51c53fc72031b427f3ba5b36fe69e
+=======
 >>>>>>> 4468f9c87dd51c53fc72031b427f3ba5b36fe69e
 W=2.85
 L=5
@@ -506,13 +602,19 @@ model=res_xhigh_po_2p85
 spiceprefix=X
 mult=1}
 <<<<<<< HEAD
+<<<<<<< HEAD
 C {xschem_sky130/sky130_fd_pr/res_xhigh_po_2p85.sym} 1150 410 0 0 {name=R4
 =======
 <<<<<<< HEAD
+=======
+>>>>>>> 4468f9c87dd51c53fc72031b427f3ba5b36fe69e
 C {xschem_sky130/sky130_fd_pr/res_xhigh_po_2p85.sym} 1130 340 0 0 {name=R4
 =======
 C {xschem_sky130/sky130_fd_pr/res_xhigh_po_2p85.sym} 1150 410 0 0 {name=R4
 >>>>>>> 910734a2 (??)
+<<<<<<< HEAD
+>>>>>>> 4468f9c87dd51c53fc72031b427f3ba5b36fe69e
+=======
 >>>>>>> 4468f9c87dd51c53fc72031b427f3ba5b36fe69e
 W=2.85
 L=5
@@ -520,11 +622,17 @@ model=res_xhigh_po_2p85
 spiceprefix=X
 mult=1}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
+=======
+>>>>>>> 4468f9c87dd51c53fc72031b427f3ba5b36fe69e
 C {lab_pin.sym} 1130 390 2 0 {name=l1 sig_type=std_logic lab=Va}
 C {lab_pin.sym} 770 190 0 0 {name=l3 sig_type=std_logic lab=Vb}
 C {lab_pin.sym} 970 180 0 0 {name=l4 sig_type=std_logic lab=Porst}
+=======
+<<<<<<< HEAD
+>>>>>>> 4468f9c87dd51c53fc72031b427f3ba5b36fe69e
 =======
 >>>>>>> 4468f9c87dd51c53fc72031b427f3ba5b36fe69e
 C {devices/ipin.sym} 990 250 0 0 {name=p1 lab=Porst}
@@ -560,6 +668,10 @@ model=nfet_01v8
 spiceprefix=X
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 910734a2 (??)
+>>>>>>> 4468f9c87dd51c53fc72031b427f3ba5b36fe69e
 =======
 >>>>>>> 910734a2 (??)
 >>>>>>> 4468f9c87dd51c53fc72031b427f3ba5b36fe69e
