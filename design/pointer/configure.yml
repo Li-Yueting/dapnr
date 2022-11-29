@@ -29,7 +29,15 @@ outputs:
 
 commands:
   - ln -sf inputs/innovus-foundation-flow
+<<<<<<< HEAD
   - cp -a ../../interface/gen-9-id-47/.  .
+=======
+<<<<<<< HEAD
+  - cp -a ../../interface/gen-6-id-8/. .
+=======
+  - cp -a ../../interface/gen-9-id-47/.  .
+>>>>>>> 910734a2 (??)
+>>>>>>> 4468f9c87dd51c53fc72031b427f3ba5b36fe69e
   - cd outputs
   - ln -sf ../checkpoints/design.checkpoint
   - ln -sf ../*.gds.gz            design.gds.gz
