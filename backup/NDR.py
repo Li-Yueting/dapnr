@@ -73,9 +73,9 @@ if __name__ == '__main__':
     'BGR_Core/l8', 'BGR_Core/l10', 'BGR_Core/l11', 'BGR_Core/l1', 'BGR_Core/l2', 'BGR_Core/l4', 'BGR_Core/l5', 'BGR_Core/l12', \
     'BGR_Core/R6/l', 'BGR_Core/R7/l', 'BGR_Core/R8/l', 'BGR_Core/R10/l', 'BGR_Core/R11/l', 'BGR_Core/R3/l', 'BGR_Core/R1/l', \
     'BGR_Core/R2/l', 'BGR_Core/R4/l', 'BGR_Core/R5/l', 'BGR_Core/R12/l', 'R17/l', 'R18/l', 'R19/l', 'R20/l', 'VDD']
-    w_mults = [4, 4, 4, 4]
-    s_mults = [3, 3, 3, 3]
-    layers = [2, 3, 4, 5]
+    w_mults = [4, 4, 4, 4, 4]
+    s_mults = [3, 3, 3, 3, 3]
+    layers = [1, 2, 3, 4, 5]
     bot_layer = 2
     fndr = 'ndr.tcl'
     NDR.remove(fndr)

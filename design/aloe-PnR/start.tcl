@@ -13,6 +13,7 @@ set ::env(ngen) 10
 source scripts/interface.tcl
 source scripts/ini.tcl
 source scripts/tech.tcl
+source scripts/ndr.tcl
 ################### MAIN BEGIN HERE ########################
 python scripts/initial_genes.py ;# random initial genes
 while {$env(gen)<$env(ngen)} {

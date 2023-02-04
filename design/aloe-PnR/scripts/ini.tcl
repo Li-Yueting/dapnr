@@ -24,7 +24,7 @@ set tso_post_client_restore_command {update_timing ; write_eco_opt_db ;}
 set init_design_uniquify 1
 init_design
 setMaxRouteLayer 5
-setDesignMode -process 16 -flowEffort standard
+setDesignMode -process 130 -flowEffort standard
 
 # power routing mode
 setViaGenMode -reset
@@ -51,6 +51,8 @@ setNanoRouteMode -routeBottomRoutingLayer 2 \
 				 -routeWithSiDriven false \
 				 -routeAutoPinAccessForBlockPin true \
 				 -routeConcurrentMinimizeViaCountEffort high
+
+setNanoRouteMode -droutePostRouteSwapVia multiCut
 # 				 #-routeWithViaInPin 1:1
 # 				 # Always use vias for access to Metal1 standard cell pins. Metal2 and above can use vias or planar access.
 # # register all tech sites
@@ -100,4 +102,5 @@ globalNetConnect VSS -type pgpin -pin VGND -inst *
 # globalNetConnect VSS -type pgpin -pin VNB -inst *
 # globalNetConnect VSS -type pgpin -net VSS -inst *
 # globalNetConnect VSS -type net -pin SOURCE -inst *nfet*
+# routeDesign -viaOpt
 
