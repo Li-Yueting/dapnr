@@ -1,4 +1,4 @@
 # skywater-130nm-analog-adk
 simulation/
 build/
-interface/gen*
+interface/

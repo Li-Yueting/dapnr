@@ -1,4 +1,4 @@
-# add_ndr -name YTRULE -generate_via -width_multiplier {M2 3 M3 3 M4 3 M5 3} -spacing_multiplier {M2 4 M3 4 M4 4 M5 4}
+add_ndr -name YTRULE -generate_via -width_multiplier {M2 3 M3 3 M4 3 M5 3} -spacing_multiplier {M2 4 M3 4 M4 4 M5 4}
 setAttribute -net porst -non_default_rule YTRULE -bottom_preferred_routing_layer 2 -preferred_routing_layer_effort high
 setAttribute -net va -non_default_rule YTRULE -bottom_preferred_routing_layer 2 -preferred_routing_layer_effort high
 setAttribute -net vb -non_default_rule YTRULE -bottom_preferred_routing_layer 2 -preferred_routing_layer_effort high
