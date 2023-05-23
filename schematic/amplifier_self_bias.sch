@@ -145,11 +145,11 @@ sa=0 sb=0 sd=0
 model=nfet_01v8
 spiceprefix=X
 }
-C {ipin.sym} 90 220 0 0 {name=p1 lab=b
+C {devices/ipin.sym} 90 220 0 0 {name=p1 lab=b
 }
-C {ipin.sym} 410 220 0 1 {name=p2 lab=a
+C {devices/iopin.sym} 270 260 2 0 {name=p5 lab=GND
 }
-C {opin.sym} 440 160 0 0 {name=p3 lab=out}
-C {iopin.sym} 380 380 1 0 {name=p4 lab=GND}
-C {iopin.sym} 270 260 2 0 {name=p5 lab=GND}
-C {iopin.sym} 260 70 3 0 {name=p6 lab=VDD}
+C {devices/iopin.sym} 380 380 1 0 {name=p4 lab=GND}
+C {devices/ipin.sym} 410 220 2 0 {name=p2 lab=a}
+C {devices/iopin.sym} 260 70 3 0 {name=p6 lab=VDD}
+C {devices/opin.sym} 440 160 0 0 {name=p7 lab=out}
