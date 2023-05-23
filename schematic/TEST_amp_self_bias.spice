@@ -1,0 +1,3 @@
+*** test circuit for amplifier with self-bias circuit ***
+.include amplifier_self_bias.spice
+Vpower 
