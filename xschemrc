@@ -52,4 +52,4 @@ set SKYWATER_STDCELLS ${PDK_ROOT}/${PDK}/libs.ref/sky130_fd_sc_hd/spice
 puts stderr "open_pdks installation: using $PDK_ROOT"
 puts stderr "SKYWATER_MODELS: $SKYWATER_MODELS"
 puts stderr "SKYWATER_STDCELLS: $SKYWATER_STDCELLS"
-puts stderr "NETLIST_DIR: $env(PWD)/sims"
+puts stderr "NETLIST_DIR: $netlist_dir"
