@@ -1,6 +1,5 @@
-**.subckt amplifier_self_bias b GND GND a VDD out
+**.subckt amplifier_self_bias b GND a VDD out
 *.ipin b
-*.iopin GND
 *.iopin GND
 *.ipin a
 *.iopin VDD

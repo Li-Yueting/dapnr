@@ -44,9 +44,7 @@ N 510 320 510 350 { lab=GND}
 N 500 350 510 350 { lab=GND}
 N 250 370 500 370 { lab=GND}
 N 380 370 380 390 { lab=GND}
-N 150 220 350 220 { lab=GND}
-N 260 260 280 260 { lab=GND}
-N 280 220 280 260 { lab=GND}
+N 150 220 350 220 { lab=xxx}
 C {xschem_sky130/sky130_fd_pr/nfet_01v8_lvt.sym} 370 220 0 1 {name=M1
 L=2
 W=26.95
@@ -147,9 +145,8 @@ spiceprefix=X
 }
 C {devices/ipin.sym} 90 220 0 0 {name=p1 lab=b
 }
-C {devices/iopin.sym} 270 260 2 0 {name=p5 lab=GND
-}
 C {devices/iopin.sym} 380 380 1 0 {name=p4 lab=GND}
 C {devices/ipin.sym} 410 220 2 0 {name=p2 lab=a}
 C {devices/iopin.sym} 260 70 3 0 {name=p6 lab=VDD}
 C {devices/opin.sym} 440 160 0 0 {name=p7 lab=out}
+C {devices/lab_pin.sym} 250 220 1 0 {name=l1 sig_type=std_logic lab=GND}
