@@ -1,15 +1,19 @@
 module bgr_top (
     inout porst,
-    // inout va, 
-    // inout vb,
+    inout va, 
+    inout vb,
+    inout vq,
+    inout vx,
     inout vbg
  );
  
- wire va, vb, vc;
+ wire vc;
  amplifier amp(
      .va(va),
      .vb(vb),
      .vc(vc),
+     .vq(vq),
+     .vx(vx),
      .VDD(VDD),
      .VSS(VSS)
  );
@@ -59,7 +63,6 @@ module bgr_top (
      .Rin(l20),
      .Rout(VSS)
  );
-
 endmodule
 
 // ============================================ module amplifier =====================================
@@ -67,10 +70,12 @@ module amplifier (
     inout va,
     inout vb,
     inout vc,
+    inout vq,
+    inout vx,
     inout VSS,
     inout VDD
  );
- wire vg, vq, vx;
+ wire vg;
 
  sky130_asc_pfet_01v8_lvt_6 M4 (
      .GATE(vg),
