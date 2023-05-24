@@ -1,8 +1,8 @@
 setenv MFLOWGEN_PATH /farmshare/home/classes/ee/372/PDKs
 # setenv PDKPATH /farmshare/classes/ee/272/PDKs/share/pdk/sky130A
 # setenv PDK_ROOT /farmshare/home/classes/ee/372/PDKs/open_pdks_1.0.313
-setenv PDKPATH /farmshare/home/classes/ee/272/PDKS.v2021/sky130A
-# setenv PDKPATH /farmshare/home/classes/ee/372/PDKs/open_pdks_1.0.313/sky130/sky130A
+# setenv PDKPATH /farmshare/home/classes/ee/272/PDKS.v2021/sky130A
+setenv PDKPATH /farmshare/home/classes/ee/372/PDKs/open_pdks_1.0.313/sky130/sky130A
 setenv PATH /cad/ngspice/36/bin:$PATH
 setenv PATH /cad/mentor/2019.11/Catapult_Synthesis_10.4b-841621/Mgc_home/bin:$PATH
 setenv PATH /cad/iverilog/bin:$PATH
