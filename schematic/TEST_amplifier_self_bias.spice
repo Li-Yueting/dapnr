@@ -2,7 +2,7 @@
 * pwl: check ngspice manual piece wise linear function
 .lib /farmshare/home/classes/ee/372/PDKs/open_pdks_1.0.313/sky130/sky130A/libs.tech/ngspice/sky130.lib.spice tt
 .include amplifier_self_bias.spice
-Xamp b GND a VDD out amplifier_self_bias
+Xamp a b out VDD GND amplifier_self_bias
 Vpower VDD 0 dc 1.8
 Vground GND 0 dc 0
 Va a 0 pwl(0s,1V, 10ms,1.5V,  20ms,2V, 30ms,1.5V, 40ms,1V)
