@@ -48,6 +48,7 @@ N 150 220 350 220 { lab=#net5}
 N 220 230 240 230 { lab=#net5}
 N 220 220 220 230 { lab=#net5}
 N 680 290 710 290 { lab=GND}
+N 140 80 150 80 {}
 C {xschem_sky130/sky130_fd_pr/nfet_01v8_lvt.sym} 370 220 0 1 {name=M1
 L=2
 W=26.95
