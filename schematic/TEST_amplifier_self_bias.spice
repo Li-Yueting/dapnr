@@ -1,5 +1,6 @@
 *** Test Circuit [for Amplifier with Self-Bias Circuit] ***
 * pwl: check ngspice manual piece wise linear function
+.lib /farmshare/home/classes/ee/372/PDKs/open_pdks_1.0.313/sky130/sky130A/libs.tech/ngspice/sky130.lib.spice tt
 .include amplifier_self_bias.spice
 Xamp b GND a VDD out amplifier_self_bias
 Vpower VDD 0 1.8
