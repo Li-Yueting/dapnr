@@ -1,4 +1,5 @@
-**.subckt amplifier_self_bias b GND a VDD out
+*** Amplifier with Self-Bias Circuit ***
+.subckt amplifier_self_bias b GND a VDD out
 *.ipin b
 *.iopin GND
 *.ipin a
@@ -25,6 +26,6 @@ XM6 net3 net3 GND GND sky130_fd_pr__nfet_01v8_lvt L=2 W=3.65 nf=1 ad='int((nf+1)
 XM7 net2 net3 GND GND sky130_fd_pr__nfet_01v8 L=2 W=3.65 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
 + pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
 + sa=0 sb=0 sd=0 mult=1 m=1 
-**.ends
+.ends
 ** flattened .save nodes
 .end
