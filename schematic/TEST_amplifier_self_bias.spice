@@ -6,7 +6,7 @@ Vpower VDD 0 1.8
 Vground GND 0 0
 Va a 0 pwl(0s,1V, 10ms,1.5V,  20ms,2V, 30ms,1.5V, 40ms,1V)
 Vb b 0 pwl(0s,1V, 10ms,0.5V,  20ms,0V, 30ms,0.5V, 40ms,1V)
-.tran 1 ns 100ms
+.tran 1ns 100ms
 *********************************
 .control
     run
