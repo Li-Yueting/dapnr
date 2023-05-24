@@ -16,7 +16,7 @@ def split(plotDat):
     plotDatSplit = collections.OrderedDict()
     keys = plotDat.keys()
     
-    splitPtr = 0;
+    splitPtr = 0
     splitPos = np.append(splitPos, len(sweep))
 
     for key in keys:
