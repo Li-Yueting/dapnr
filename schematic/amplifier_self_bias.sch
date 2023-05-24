@@ -8,23 +8,19 @@ N 260 60 260 80 { lab=VDD}
 N 150 80 260 80 { lab=VDD}
 N 260 80 350 80 { lab=VDD}
 N 350 80 500 80 { lab=VDD}
-N 150 140 150 190 { lab=#net1}
-N 190 110 310 110 { lab=#net1}
 N 350 140 350 190 { lab=out}
-N 150 250 150 290 { lab=#net2}
-N 150 290 250 290 { lab=#net2}
-N 250 290 350 290 { lab=#net2}
-N 350 250 350 290 { lab=#net2}
-N 290 320 460 320 { lab=#net3}
+N 150 250 150 290 { lab=#net1}
+N 150 290 250 290 { lab=#net1}
+N 250 290 350 290 { lab=#net1}
+N 350 250 350 290 { lab=#net1}
+N 290 320 460 320 { lab=#net2}
 N 80 220 110 220 { lab=b}
-N 500 280 500 290 { lab=#net3}
-N 500 140 500 280 { lab=#net3}
-N 150 160 260 160 { lab=#net1}
-N 260 110 260 160 { lab=#net1}
+N 500 280 500 290 { lab=#net2}
+N 500 140 500 280 { lab=#net2}
 N 250 350 250 370 { lab=GND}
 N 500 350 500 370 { lab=GND}
-N 410 280 410 320 { lab=#net3}
-N 410 280 500 280 { lab=#net3}
+N 410 280 410 320 { lab=#net2}
+N 410 280 500 280 { lab=#net2}
 N 390 220 420 220 { lab=a}
 N 350 160 450 160 { lab=out}
 N 420 110 460 110 { lab=out}
@@ -34,8 +30,6 @@ N 510 80 510 110 { lab=VDD}
 N 500 80 510 80 { lab=VDD}
 N 350 110 360 110 { lab=VDD}
 N 360 80 360 110 { lab=VDD}
-N 140 110 150 110 { lab=#net4}
-N 140 80 140 110 { lab=#net4}
 N 240 320 250 320 { lab=GND}
 N 240 320 240 350 { lab=GND}
 N 240 350 250 350 { lab=GND}
@@ -44,11 +38,17 @@ N 510 320 510 350 { lab=GND}
 N 500 350 510 350 { lab=GND}
 N 250 370 500 370 { lab=GND}
 N 380 370 380 390 { lab=GND}
-N 150 220 350 220 { lab=#net5}
-N 220 230 240 230 { lab=#net5}
-N 220 220 220 230 { lab=#net5}
+N 150 220 350 220 { lab=GND}
+N 220 230 240 230 { lab=GND}
+N 220 220 220 230 { lab=GND}
 N 680 290 710 290 { lab=GND}
-N 140 80 150 80 {}
+N 140 80 150 80 { lab=VDD}
+N 190 110 310 110 {}
+N 150 140 150 190 {}
+N 140 110 150 110 {}
+N 140 80 140 110 {}
+N 150 160 240 160 {}
+N 240 110 240 160 {}
 C {xschem_sky130/sky130_fd_pr/nfet_01v8_lvt.sym} 370 220 0 1 {name=M1
 L=2
 W=26.95
@@ -77,7 +77,7 @@ sa=0 sb=0 sd=0
 model=pfet_01v8_lvt
 spiceprefix=X
 }
-C {xschem_sky130/sky130_fd_pr/pfet_01v8_lvt.sym} 170 110 2 0 {name=M3
+C {xschem_sky130/sky130_fd_pr/pfet_01v8_lvt.sym} 170 110 0 1 {name=M3
 L=2
 W=38.66
 nf=1
