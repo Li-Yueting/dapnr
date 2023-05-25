@@ -5,5 +5,5 @@ outputs:
   # - design.vcs.v
 
 commands:
-  - cat bgr_top.v > outputs/design_rtl.v 
+  - cat amplifier_self_bias.v > outputs/design_rtl.v 
   # - cat inverter.v > outputs/design.vcs.v 

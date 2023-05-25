@@ -22,7 +22,7 @@ def construct():
   adk_view = 'view-standard'
   parameters = {
     'construct_path' : __file__,
-    'design_name'    : 'bgr_top',
+    'design_name'    : 'amplifier_self_bias',
     'clock_period'   : 10.0,
     'adk'            : adk_name,
     'adk_view'       : adk_view,
