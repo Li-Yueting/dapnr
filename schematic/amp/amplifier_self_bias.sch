@@ -48,7 +48,7 @@ N 240 110 240 160 { lab=n1}
 N 680 260 710 260 { lab=VDD}
 C {xschem_sky130/sky130_fd_pr/nfet_01v8_lvt.sym} 370 220 0 1 {name=M1
 L=2
-W=26.95
+W=36
 nf=1
 mult=1
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
@@ -62,7 +62,7 @@ spiceprefix=X
 }
 C {xschem_sky130/sky130_fd_pr/pfet_01v8_lvt.sym} 330 110 0 0 {name=M2
 L=2
-W=38.66
+W=38.7
 nf=1
 mult=1
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
@@ -76,7 +76,7 @@ spiceprefix=X
 }
 C {xschem_sky130/sky130_fd_pr/pfet_01v8_lvt.sym} 170 110 0 1 {name=M3
 L=2
-W=38.66
+W=38.7
 nf=1
 mult=1
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
@@ -90,7 +90,7 @@ spiceprefix=X
 }
 C {xschem_sky130/sky130_fd_pr/nfet_01v8_lvt.sym} 130 220 0 0 {name=M4
 L=2
-W=26.95
+W=36
 nf=1
 mult=1
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
@@ -104,7 +104,7 @@ spiceprefix=X
 }
 C {xschem_sky130/sky130_fd_pr/pfet_01v8.sym} 480 110 0 0 {name=M5
 L=2
-W=77.32
+W=77.4
 nf=1
 mult=1
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
@@ -118,7 +118,7 @@ spiceprefix=X
 }
 C {xschem_sky130/sky130_fd_pr/nfet_01v8_lvt.sym} 480 320 0 0 {name=M6
 L=2
-W=3.65
+W=4
 nf=1
 mult=1
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
@@ -132,7 +132,7 @@ spiceprefix=X
 }
 C {xschem_sky130/sky130_fd_pr/nfet_01v8.sym} 270 320 0 1 {name=M7
 L=2
-W=3.65
+W=4
 nf=1 
 mult=1
 ad="'int((nf+1)/2) * W/nf * 0.29'" 

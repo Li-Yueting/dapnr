@@ -34,7 +34,7 @@ set dircolor(xschem_sky130$) blue
 set dircolor(xschem_library$) red
 set dircolor(devices$) red
 set XSCHEM_START_WINDOW {}
-set netlist_dir /home/users/lyt1314/SUMMER/dapnr/schematic
+set netlist_dir /home/users/lyt1314/SUMMER/dapnr/schematic/amp
 set netlist_type spice
 set to_pdf {ps2pdf -dAutoRotatePages=/None}
 ### editor selection
