@@ -1,0 +1,42 @@
+build_dir: 5-cadence-innovus-flowsetup
+build_id: '5'
+commands:
+- source ./run.sh
+edges_i:
+  adk:
+  - f: adk
+    step: 0-analog-skywater-130nm
+  design.sdc:
+  - f: design.sdc
+    step: 3-dummy_dc
+  design.v:
+  - f: design.v
+    step: 3-dummy_dc
+edges_o:
+  innovus-foundation-flow:
+  - f: innovus-foundation-flow
+    step: 6-cadence-innovus-init
+  - f: innovus-foundation-flow
+    step: 8-aloe-PnR
+  - f: innovus-foundation-flow
+    step: 7-pointer
+inputs:
+- adk
+- design.v
+- design.sdc
+name: cadence-innovus-flowsetup
+outputs:
+- innovus-foundation-flow
+parameters:
+  design_name: amplifier_self_bias
+  express_flow: false
+  nthreads: 16
+  skip_verify_connectivity: false
+postconditions:
+- assert File( 'outputs/innovus-foundation-flow' )
+preconditions:
+- assert Tool( 'innovus' )
+- assert File( 'inputs/adk' )
+- assert File( 'inputs/design.sdc' )
+- assert File( 'inputs/design.v' )
+source: /home/users/lyt1314/Courses/ee372/aloe-sky130/mflowgen/steps/cadence-innovus-flowsetup

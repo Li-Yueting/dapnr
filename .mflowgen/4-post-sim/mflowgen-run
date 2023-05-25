@@ -1,0 +1,29 @@
+#! /usr/bin/env bash
+set -euo pipefail
+#=========================================================================
+# mflowgen-run
+#=========================================================================
+# Generator : /home/users/lyt1314/Courses/ee372/aloe-sky130/mflowgen/mflowgen/core/build_orchestrator.py
+
+# Pre
+
+rm -f .time_end
+date +%Y-%m%d-%H%M-%S > .time_start
+MFLOWGEN_STEP_HOME=$PWD
+
+# Commands
+
+cp -a ../../interface/gen-0-id-42/bgr_top-merged.gds design_merged.gds
+cp inputs/adk/magicrc .magicrc
+magic -noconsole -dnull extract_parasitic.tcl | tee gds2spice.log
+ln design_extracted_parasitic.spice outputs/design_extracted_parasitic.spice
+python string_swap_parasitic.py
+magic -noconsole -dnull extract.tcl | tee gds2spice.log
+ln design_extracted.spice outputs/design_extracted.spice
+python string_swap.py
+
+# Post
+
+cd $MFLOWGEN_STEP_HOME
+date +%Y-%m%d-%H%M-%S > .time_end
+

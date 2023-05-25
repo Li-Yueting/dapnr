@@ -1,0 +1,22 @@
+build_dir: 4-post-sim
+build_id: '4'
+commands:
+- cp -a ../../interface/gen-0-id-42/bgr_top-merged.gds design_merged.gds
+- cp inputs/adk/magicrc .magicrc
+- magic -noconsole -dnull extract_parasitic.tcl | tee gds2spice.log
+- ln design_extracted_parasitic.spice outputs/design_extracted_parasitic.spice
+- python string_swap_parasitic.py
+- magic -noconsole -dnull extract.tcl | tee gds2spice.log
+- ln design_extracted.spice outputs/design_extracted.spice
+- python string_swap.py
+edges_i:
+  adk:
+  - f: adk
+    step: 0-analog-skywater-130nm
+edges_o: {}
+inputs:
+- adk
+name: post-sim
+outputs:
+- design_extracted_parasitic.spice
+source: /home/users/lyt1314/SUMMER/dapnr/design/post-sim

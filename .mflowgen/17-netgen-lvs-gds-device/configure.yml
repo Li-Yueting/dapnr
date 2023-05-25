@@ -1,0 +1,27 @@
+build_dir: 17-netgen-lvs-gds-device
+build_id: '17'
+commands:
+- v2lvs -i -lsp inputs/adk/stdcells.spi -s inputs/adk/stdcells.spi -v inputs/design.lvs.v
+  -o design_lvs.spice
+- sh run_lvs.sh
+edges_i:
+  adk:
+  - f: adk
+    step: 0-analog-skywater-130nm
+  design.lvs.v:
+  - f: design.lvs.v
+    step: 7-pointer
+  design_extracted.spice:
+  - f: design_extracted.spice
+    step: 14-open-magic-gds2spice
+edges_o: {}
+inputs:
+- adk
+- design_extracted.spice
+- design.lvs.v
+name: netgen-lvs-gds-device
+outputs:
+- lvs_results.log
+parameters:
+  design_name: amplifier_self_bias
+source: /home/users/lyt1314/SUMMER/dapnr/design/netgen-lvs-gds-device

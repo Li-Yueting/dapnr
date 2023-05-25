@@ -1,0 +1,56 @@
+build_dir: 7-pointer
+build_id: '7'
+commands:
+- ln -sf inputs/innovus-foundation-flow
+- cp -a ../../interface/gen-0-id-8/.  .
+- cd outputs
+- ln -sf ../checkpoints/design.checkpoint
+- ln -sf ../*.gds.gz            design.gds.gz
+- ln -sf ../*-merged.gds        design_merged.gds
+- ln -sf ../*.lvs.v             design.lvs.v
+- ln -sf ../*.lef               design.lef
+- ln -sf ../*.def.gz            design.def.gz
+debug:
+- calibredrv -m design_merged.gds \ -l inputs/adk/calibre.layerprops
+edges_i:
+  adk:
+  - f: adk
+    step: 0-analog-skywater-130nm
+  innovus-foundation-flow:
+  - f: innovus-foundation-flow
+    step: 5-cadence-innovus-flowsetup
+edges_o:
+  design.def.gz:
+  - f: design.def.gz
+    step: 10-open-magic-def2spice
+  design.gds.gz:
+  - f: design.gds.gz
+    step: 9-mentor-calibre-gdsmerge
+  design.lvs.v:
+  - f: design.lvs.v
+    step: 11-netgen-lvs-def
+  - f: design.lvs.v
+    step: 16-netgen-lvs-gds
+  - f: design.lvs.v
+    step: 17-netgen-lvs-gds-device
+  - f: design.lvs.v
+    step: 15-mentor-calibre-comparison
+inputs:
+- innovus-foundation-flow
+- adk
+- design.checkpoint
+name: pointer
+outputs:
+- design.checkpoint
+- design_merged.gds
+- design.gds.gz
+- design.lvs.v
+- design.lef
+- design.def.gz
+parameters:
+  design_name: amplifier_self_bias
+postconditions:
+- assert File( './outputs/design_merged.gds' )
+preconditions:
+- assert Tool( 'calibredrv' )
+source: /home/users/lyt1314/SUMMER/dapnr/design/pointer

@@ -1,0 +1,65 @@
+build_dir: 8-aloe-PnR
+build_id: '8'
+commands:
+- innovus -overwrite -64 -nowin -init start.tcl -cpus 8 -log logs/run.log
+- cd outputs
+- ln -sf ../checkpoints/design.checkpoint
+debug:
+- innovus -overwrite -64 -init innovus-foundation-flow/custom-scripts/run-debug.tcl
+  -log logs/debug.log
+edges_i:
+  adk:
+  - f: adk
+    step: 0-analog-skywater-130nm
+  design.checkpoint:
+  - f: design.checkpoint
+    step: 6-cadence-innovus-init
+  design.def:
+  - f: design.def
+    step: 6-cadence-innovus-init
+  design.fp:
+  - f: design.fp
+    step: 6-cadence-innovus-init
+  design.fp.spr:
+  - f: design.fp.spr
+    step: 6-cadence-innovus-init
+  design.sdc:
+  - f: design.sdc
+    step: 3-dummy_dc
+  design.v:
+  - f: design.v
+    step: 3-dummy_dc
+  - f: design.v
+    step: 6-cadence-innovus-init
+  innovus-foundation-flow:
+  - f: innovus-foundation-flow
+    step: 5-cadence-innovus-flowsetup
+edges_o: {}
+inputs:
+- innovus-foundation-flow
+- adk
+- design.sdc
+- design.checkpoint
+- design.fp
+- design.fp.spr
+- design.def
+- design.v
+name: aloe-PnR
+outputs:
+- design.checkpoint
+parameters:
+  cell_padding: 2
+  order:
+  - netweight.tcl
+  - pnr.tcl
+  - interface.tcl
+  - reporting.tcl
+  useful_skew: true
+postconditions: null
+preconditions:
+- assert Tool( 'innovus' )
+- assert File( 'inputs/innovus-foundation-flow' )
+- assert File( 'inputs/adk' )
+- assert File( 'inputs/design.sdc' )
+- assert File( 'inputs/design.checkpoint' )
+source: /home/users/lyt1314/SUMMER/dapnr/design/aloe-PnR

@@ -1,0 +1,27 @@
+build_dir: 15-mentor-calibre-comparison
+build_id: '15'
+commands:
+- sh run_lvs.sh
+debug:
+- calibre -rve -lvs svdb
+edges_i:
+  adk:
+  - f: adk
+    step: 0-analog-skywater-130nm
+  design.lvs.v:
+  - f: design.lvs.v
+    step: 7-pointer
+  design_extracted.spice:
+  - f: design_extracted.spice
+    step: 14-open-magic-gds2spice
+edges_o: {}
+inputs:
+- adk
+- design_extracted.spice
+- design.lvs.v
+name: mentor-calibre-comparison
+outputs:
+- lvs.report
+parameters:
+  design_name: amplifier_self_bias
+source: /home/users/lyt1314/SUMMER/dapnr/design/mentor-calibre-comparison

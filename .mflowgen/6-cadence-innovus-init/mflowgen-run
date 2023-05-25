@@ -1,0 +1,32 @@
+#! /usr/bin/env bash
+set -euo pipefail
+#=========================================================================
+# mflowgen-run
+#=========================================================================
+# Generator : /home/users/lyt1314/Courses/ee372/aloe-sky130/mflowgen/mflowgen/core/build_orchestrator.py
+
+# Pre
+
+rm -f .time_end
+date +%Y-%m%d-%H%M-%S > .time_start
+MFLOWGEN_STEP_HOME=$PWD
+export order=ini.tcl,floorplan.tcl,pin-assignments.tcl,tech.tcl,power.tcl,savefp.tcl,reporting.tcl
+
+# Commands
+
+ln -sf inputs/innovus-foundation-flow
+rm innovus-foundation-flow/view_definition.tcl
+cp cust_view_definition.tcl innovus-foundation-flow/view_definition.tcl
+innovus -overwrite -64 -nowin -init START.tcl -log logs/run.log
+cd outputs
+cp ../inputs/design.v design.v
+ln -sf ../checkpoints/design.checkpoint
+ln -sf ../design.fp
+ln -sf ../design.fp.spr
+ln -sf ../design.def
+
+# Post
+
+cd $MFLOWGEN_STEP_HOME
+date +%Y-%m%d-%H%M-%S > .time_end
+

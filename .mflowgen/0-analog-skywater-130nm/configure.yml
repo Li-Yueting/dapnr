@@ -1,0 +1,44 @@
+build_dir: 0-analog-skywater-130nm
+build_id: '0'
+commands:
+- mkdir -p outputs && cd outputs
+- ln -sf ../view-standard adk
+edges_i: {}
+edges_o:
+  adk:
+  - f: adk
+    step: 5-cadence-innovus-flowsetup
+  - f: adk
+    step: 6-cadence-innovus-init
+  - f: adk
+    step: 8-aloe-PnR
+  - f: adk
+    step: 7-pointer
+  - f: adk
+    step: 9-mentor-calibre-gdsmerge
+  - f: adk
+    step: 13-open-magic-drc
+  - f: adk
+    step: 12-open-magic-antenna
+  - f: adk
+    step: 10-open-magic-def2spice
+  - f: adk
+    step: 14-open-magic-gds2spice
+  - f: adk
+    step: 11-netgen-lvs-def
+  - f: adk
+    step: 16-netgen-lvs-gds
+  - f: adk
+    step: 17-netgen-lvs-gds-device
+  - f: adk
+    step: 15-mentor-calibre-comparison
+  - f: adk
+    step: 4-post-sim
+name: analog-skywater-130nm
+outputs:
+- adk
+parameters:
+  adk: skywater-130nm-analog-adk
+  adk_view: view-standard
+sandbox: true
+source: /home/users/lyt1314/SUMMER/dapnr/skywater-130nm-analog-adk
