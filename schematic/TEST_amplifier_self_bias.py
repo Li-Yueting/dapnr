@@ -27,7 +27,7 @@ ax2.legend()
 # sub-figure 3 
 ax3 = fig.add_subplot(313)
 ax3.plot(time*1e6, vout, 'r', label='v(out)')
-print("vbgr", vout)
+print("vout", vout)
 ax3.set_xlabel("time(us)")
 ax3.set_ylabel("voltage(V)")
 ax3.legend()
