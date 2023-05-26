@@ -24,8 +24,8 @@ class GeneUpdate:
         adjusts = np.loadtxt(self.ff, delimiter=" ")
         mean = np.mean(adjusts)
         median = np.median(adjusts)
-        max= np.max(adjusts)
-        best_index = int(np.argmin(adjusts))
+        min= np.min(adjusts)
+        best_index = int(np.argmax(adjusts))
         self.genes = np.loadtxt(self.gf, delimiter=",", dtype=int)
         if self.gen == 0:
             self.best = None
@@ -36,19 +36,19 @@ class GeneUpdate:
                 self.best = data["best_gene"], data["best_fitness"]
                 # self.best = json.load(f)
                 
-        if self.best is None or np.min(adjusts) < self.best[1]:
-            self.best = self.genes[np.argmin(adjusts)], np.min(adjusts)
+        if self.best is None or np.max(adjusts) > self.best[1]:
+            self.best = self.genes[np.argmax(adjusts)], np.max(adjusts)
 
         best_0 = self.best[0] if isinstance(self.best[0], list) else self.best[0].tolist()
         best_1 = self.best[1] 
-        # best=best_0, best_1
+        best=best_0, best_1
         extra = {
             "best_gene": best_0,
             "best_fitness": best_1,
             "best_index": best_index,
             "mean": mean,
             "median": median,
-            "max": max
+            "min": min
         }
         best_out_file = os.getenv("base_dir")+"/summary/gen-"+str(self.gen)+"-best.json"
         print(extra)
@@ -64,14 +64,14 @@ class GeneUpdate:
             d2 = random.choice(ready_index)
             ready_index.remove(d2)
 
-            if adjusts[d1] < adjusts[d2]:
+            if adjusts[d1] > adjusts[d2]:
                 sel.append(d1)
             else:
                 sel.append(d2)
         adjusts=np.array(adjusts)
         # keep best individual 
-        if np.min(adjusts[sel]) < self.best[1]:
-            self.genes[sel[np.argmax(adjusts[sel])]] = self.best[0]
+        if np.max(adjusts[sel]) < self.best[1]:
+            self.genes[sel[np.argmin(adjusts[sel])]] = self.best[0]
         self.genes[0:self.pop_size] = self.genes[sel]
         
 
