@@ -12,7 +12,7 @@ set init_mmmc_file inputs/innovus-foundation-flow/view_definition.tcl
 set init_io_file {}
 set init_lef_file {inputs/adk/rtk-tech.lef inputs/adk/stdcells.lef}
 set init_pwr_net {VDD}
-set init_top_cell bgr_top
+set init_top_cell amplifier_self_bias 
 set init_verilog inputs/design.v
 set latch_time_borrow_mode max_borrow
 set pegDefaultResScaleFactor 1.000000
