@@ -12,11 +12,11 @@ ff = os.getenv("base_dir")+"/summary/"+"gen-"+str(os.getenv("ngen"))+"-fitness.t
 gf = os.getenv("base_dir")+"/summary/"+"gen-"+str(os.getenv("ngen"))+"-genes.txt" #gf=gene_file
 fitness = np.loadtxt(ff, delimiter=" ")
 genes = np.loadtxt(gf, delimiter=",", dtype=int)
-best = genes[np.argmax(fitness)], np.max(fitness)
+best = genes[np.argmin(fitness)], np.min(fitness)
 mean = np.mean(fitness)
 median = np.median(fitness)
-min= np.min(fitness)
-best_index = int(np.argmax(fitness))
+max= np.max(fitness)
+best_index = int(np.argmin(fitness))
 best_0 = best[0] if isinstance(best[0], list) else best[0].tolist()
 best_1 = best[1] 
 extra = {
@@ -25,10 +25,10 @@ extra = {
     "best_index": best_index,
     "mean": mean,
     "median": median,
-    "min": min
+    "max": max
 }
 best_out_file = os.getenv("base_dir")+"/summary/gen-"+str(os.getenv("ngen"))+"-best.json"
-if np.max(fitness) > last_best[1]:
+if np.min(fitness) < last_best[1]:
     with open(best_out_file, "w") as f:
         json.dump(extra, f)
 else:
