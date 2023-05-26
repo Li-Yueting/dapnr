@@ -13,7 +13,6 @@ def assign_netweight(base_file, new_list, out_dir):
             ori.append(str(new_list[i])+'\n')
             new = ' '.join(ori)
             new_lines.append(new)
-    # print(new_lines)
     ofile.writelines(new_lines)
     ofile.close()
 
