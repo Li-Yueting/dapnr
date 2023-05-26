@@ -65,7 +65,7 @@ set order [split $::env(order) ","]
 # set dir $env(DIR)
 
 set dirs [glob -directory ../../interface -type d *]
-set design_name "bgr_top"
+set design_name "amplifier_self_bias"
 # puts $dirs 
 
 # source -verbose [file join $dir "netweight.tcl"]
