@@ -44,11 +44,11 @@ class GeneUpdate:
         best=best_0, best_1
         extra = {
             "best_gene": best_0,
-            "best_fitness": best_1,
+            "best_fitness": -best_1,
             "best_index": best_index,
-            "mean": mean,
-            "median": median,
-            "min": min
+            "mean": -mean,
+            "median": -median,
+            "max": -min
         }
         best_out_file = os.getenv("base_dir")+"/summary/gen-"+str(self.gen)+"-best.json"
         print(extra)
