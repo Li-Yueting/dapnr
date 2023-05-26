@@ -8,15 +8,10 @@ proc interface {outdir design_name} {
     layout_summary $outdir $design_name
 }
 
-proc nl_normalization {lst} {
-    foreach item $lst { lappend r [expr ($item - 2282.2)/(4007.545 - 2282.2)]}
-    return $r
-}
-
-proc list_sum {lst1 lst2} {
+proc list_negative {lst1} {
     set ll [llength $lst1]
     for {set n 0} {$n < $ll} {incr n} {
-        lappend res [expr -[lindex $lst1 $n]-[lindex $lst2 $n]]
+        lappend res [expr -[lindex $lst1 $n]]
     }
     return $res
 }   
@@ -37,7 +32,7 @@ proc population_pnr {base_dir gen design_name pop_size} {
         incr number
     }
     # set nl_norm [nl_normalization $nl]
-    set fitness [expr -$nl]
+    set fitness [list_negative $nl]
     set best [tcl::mathfunc::max {*}$fitness]
     set best_index [lsearch $fitness $best]
     set best_dir $base_dir/gen-$gen-id-$best_index
@@ -121,18 +116,6 @@ proc layout_summary {outdir design_name} {
         }
         puts $fp "----------------------------------------------------"
         puts $fp "----------------------------------------------------"
-        # puts $fp [format "%-20s %-20s" "Instance" "Distance"]
-        # puts $fp [format "%-20s %-20s" r1_2 $r1_2]
-        # puts $fp [format "%-20s %-20s" r1_3 $r1_3]
-        # puts $fp [format "%-20s %-20s" r2_3 $r2_3]
-        # puts $fp [format "%-20s %-20s" r4_8 $r4_8]
-        # puts $fp [format "%-20s %-20s" r4_13 $r4_13]
-        # puts $fp [format "%-20s %-20s" r8_13 $r8_13]
-        # puts $fp [format "%-20s %-20s" r5_9 $r5_9]
-        # puts $fp [format "%-20s %-20s" r6_7 $r6_7]
-        # puts $fp "net_name: $net_name"
-        # puts $fp "net_weight: $net_weight"
-        # puts $fp "net_length: $net_length"
     close $fp
     return $net_total_length
     # "$net_total_length $mds"
@@ -146,54 +129,4 @@ proc netLength {netName} {
   return $length
 }
 
-proc inst_dist {arg1 arg2} {
-    # Source codes from - https://support.cadence.com/apex/ArticleAttachmentPortal?id=a1Od0000000nUIhEAM&pageName=ArticleContent
-    # Find and report locations:
-    set inst1_pt [lindex [dbGet [dbGet -p top.insts.name $arg1].pt] 0]
-    set inst1_x [lindex $inst1_pt 0]
-    set inst1_y [lindex $inst1_pt 1]
-    set inst2_pt [lindex [dbGet [dbGet -p top.insts.name $arg2].pt] 0]
-    set inst2_x [lindex $inst2_pt 0]
-    set inst2_y [lindex $inst2_pt 1]
-    puts ""
-    puts "$arg1 is located at ($inst1_x , $inst1_y)"
-    puts "$arg2 is located at ($inst2_x , $inst2_y)"
 
-    # Find distance and report them:
-    set x_dist [expr $inst1_x - $inst2_x]
-    set y_dist [expr $inst1_y - $inst2_y]
-    set r_dist [expr sqrt(($x_dist * $x_dist) + ($y_dist * $y_dist))]
-    return $r_dist
-}
-
-proc get_matching_distance_score {} {
-    lassign {5.1 19.79 14.68 3.44 5.12 0.08 0.08 3.52 5.11 0.07} sc1 sc2 sc3 sc4 sc5 sc6 sc7 sc8 sc9 sc13
-    # M1 - M2 
-    set r1_2 [inst_dist CM/M1 CM/M2]
-    set mds1_2  [expr ($sc1+$sc2)*($r1_2**2)]
-    # M1-M3
-    set r1_3 [inst_dist CM/M1 CM/M3]
-    set mds1_3  [expr ($sc1+$sc3)*($r1_3**2)]
-    # M2-M3
-    set r2_3 [inst_dist CM/M2 CM/M3]
-    set mds2_3  [expr ($sc2+$sc3)*($r2_3**2)]
-    # M4-M8
-    set r4_8 [inst_dist amp/M4 amp/M8]
-    set mds4_8  [expr ($sc4+$sc8)*($r4_8**2)]
-    # M4-13
-    set r4_13 [inst_dist amp/M4 amp/M13]
-    set mds4_13  [expr ($sc4+$sc13)*($r4_13**2)]
-    # M8-13
-    set r8_13 [inst_dist amp/M8 amp/M13]
-    set mds8_13  [expr ($sc8+$sc13)*($r8_13**2)]
-    # M5-M9
-    set r5_9 [inst_dist amp/M5 amp/M9]
-    set mds5_9  [expr ($sc5+$sc9)*($r5_9**2)]
-    # M6-M7
-    set r6_7 [inst_dist amp/M6 amp/M7]
-    set mds6_7  [expr ($sc6+$sc7)*($r6_7**2)]
-
-    set mds_sum [expr $mds1_2 + $mds1_3 + $mds2_3+ $mds4_8 + $mds4_13 + $mds8_13 + $mds5_9 + $mds6_7 ]
-    puts "matching_distance_score_sum: $mds_sum"
-    return $mds_sum
-}
