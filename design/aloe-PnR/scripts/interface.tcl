@@ -39,16 +39,11 @@ proc population_pnr {base_dir gen design_name pop_size} {
         source -verbose scripts/pnr.tcl
         lassign [layout_summary $dir $design_name] net_total_length 
         lappend nl $net_total_length
-        # lappend mds $matching_distance_score
         incr number
     }
 
     set nl_norm [nl_normalization $nl]
-    # set mds_norm [mds_normalization $mds]
-    # puts $nl_norm
-    # puts $mds_norm
     set fitness $nl_norm
-    #[list_sum $nl_norm $mds_norm]
     set best [tcl::mathfunc::max {*}$fitness]
     set best_index [lsearch $fitness $best]
     set best_dir $base_dir/gen-$gen-id-$best_index
@@ -136,7 +131,6 @@ proc layout_summary {outdir design_name} {
         puts $fp "net_total_length: $net_total_length"
         puts $fp "core_utilization: $core_utilization"
         puts $fp "chip_utilization: $chip_utilization"
-        puts $fp "matching_distance_score: $mds"
         puts $fp "----------------------------------------------------"
         puts $fp [format "%-20s %-20s %-20s" "NetName" "NetWeight" "NetLength"]
         for {set i 0} {$i< [llength $net_name]} {incr i} {
@@ -187,38 +181,6 @@ proc inst_dist {arg1 arg2} {
     set y_dist [expr $inst1_y - $inst2_y]
     set r_dist [expr sqrt(($x_dist * $x_dist) + ($y_dist * $y_dist))]
     return $r_dist
-}
-
-
-proc get_matching_distance_score {} {
-    lassign {5.1 19.79 14.68 3.44 5.12 0.08 0.08 3.52 5.11 0.07} sc1 sc2 sc3 sc4 sc5 sc6 sc7 sc8 sc9 sc13
-    set r1_2 [inst_dist CM/M1 CM/M2]
-    set mds1_2  [expr ($sc1+$sc2)*($r1_2**2)]
-    # M1-M3
-    set r1_3 [inst_dist CM/M1 CM/M3]
-    set mds1_3  [expr ($sc1+$sc3)*($r1_3**2)]
-    # M2-M3
-    set r2_3 [inst_dist CM/M2 CM/M3]
-    set mds2_3  [expr ($sc2+$sc3)*($r2_3**2)]
-    # M4-M8
-    set r4_8 [inst_dist amp/M4 amp/M8]
-    set mds4_8  [expr ($sc4+$sc8)*($r4_8**2)]
-    # M4-13
-    set r4_13 [inst_dist amp/M4 amp/M13]
-    set mds4_13  [expr ($sc4+$sc13)*($r4_13**2)]
-    # M8-13
-    set r8_13 [inst_dist amp/M8 amp/M13]
-    set mds8_13  [expr ($sc8+$sc13)*($r8_13**2)]
-    # M5-M9
-    set r5_9 [inst_dist amp/M5 amp/M9]
-    set mds5_9  [expr ($sc5+$sc9)*($r5_9**2)]
-    # M6-M7
-    set r6_7 [inst_dist amp/M6 amp/M7]
-    set mds6_7  [expr ($sc6+$sc7)*($r6_7**2)]
-
-    set mds_sum [expr $mds1_2 + $mds1_3 + $mds2_3+ $mds4_8 + $mds4_13 + $mds8_13 + $mds5_9 + $mds6_7 ]
-    puts "matching_distance_score_sum: $mds_sum"
-    return $mds_sum
 }
 
 proc get_matching_distance_score {} {
