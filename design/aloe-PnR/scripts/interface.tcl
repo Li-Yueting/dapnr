@@ -36,9 +36,8 @@ proc population_pnr {base_dir gen design_name pop_size} {
         lappend nl $net_total_length
         incr number
     }
-
-    set nl_norm [nl_normalization $nl]
-    set fitness [expr -$nl_norm]
+    # set nl_norm [nl_normalization $nl]
+    set fitness [expr -$nl]
     set best [tcl::mathfunc::max {*}$fitness]
     set best_index [lsearch $fitness $best]
     set best_dir $base_dir/gen-$gen-id-$best_index
