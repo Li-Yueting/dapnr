@@ -37,18 +37,17 @@ proc population_pnr {base_dir gen design_name pop_size} {
         set dir $base_dir/gen-$gen-id-$number
         source -verbose $dir/netweight.tcl
         source -verbose scripts/pnr.tcl
-        lassign [layout_summary $dir $design_name] net_total_length 
+        lassign [layout_summary $dir $design_name] net_total_length matching_distance_score
         lappend nl $net_total_length
-        # lappend mds $matching_distance_score
+        lappend mds $matching_distance_score
         incr number
     }
 
     set nl_norm [nl_normalization $nl]
-    # set mds_norm [mds_normalization $mds]
+    set mds_norm [mds_normalization $mds]
     # puts $nl_norm
     # puts $mds_norm
-    set fitness $nl_norm
-    #[list_sum $nl_norm $mds_norm]
+    set fitness [list_sum $nl_norm $mds_norm]
     set best [tcl::mathfunc::max {*}$fitness]
     set best_index [lsearch $fitness $best]
     set best_dir $base_dir/gen-$gen-id-$best_index
@@ -115,16 +114,16 @@ proc layout_summary {outdir design_name} {
         set net_total_length [expr $net_total_length + $length]
     }
     # Objective 2 - Matching Distance Score
-    # set mds [get_matching_distance_score]
-    # lassign {1.09E-03 1.63E-02 8.99E-03 4.94E-02 1.26E-01 2.50E-03 2.50E-03 5.17E-02 1.26E-01 5.11E-06} u1 u2 u3 u4 u5 u6 u7 u8 u9 u13
-    # set r1_2 [inst_dist CM/M1 CM/M2]
-    # set r1_3 [inst_dist CM/M1 CM/M3]
-    # set r2_3 [inst_dist CM/M2 CM/M3]
-    # set r4_8 [inst_dist amp/M4 amp/M8]
-    # set r4_13 [inst_dist amp/M4 amp/M13]
-    # set r8_13 [inst_dist amp/M8 amp/M13]
-    # set r5_9 [inst_dist amp/M5 amp/M9]
-    # set r6_7 [inst_dist amp/M6 amp/M7]
+    set mds [get_matching_distance_score]
+    lassign {1.09E-03 1.63E-02 8.99E-03 4.94E-02 1.26E-01 2.50E-03 2.50E-03 5.17E-02 1.26E-01 5.11E-06} u1 u2 u3 u4 u5 u6 u7 u8 u9 u13
+    set r1_2 [inst_dist CM/M1 CM/M2]
+    set r1_3 [inst_dist CM/M1 CM/M3]
+    set r2_3 [inst_dist CM/M2 CM/M3]
+    set r4_8 [inst_dist amp/M4 amp/M8]
+    set r4_13 [inst_dist amp/M4 amp/M13]
+    set r8_13 [inst_dist amp/M8 amp/M13]
+    set r5_9 [inst_dist amp/M5 amp/M9]
+    set r6_7 [inst_dist amp/M6 amp/M7]
 
     # OUTPUT
     set fp [open $filename w+] ;# open the filename for writing
@@ -144,21 +143,20 @@ proc layout_summary {outdir design_name} {
         }
         puts $fp "----------------------------------------------------"
         puts $fp "----------------------------------------------------"
-        # puts $fp [format "%-20s %-20s" "Instance" "Distance"]
-        # puts $fp [format "%-20s %-20s" r1_2 $r1_2]
-        # puts $fp [format "%-20s %-20s" r1_3 $r1_3]
-        # puts $fp [format "%-20s %-20s" r2_3 $r2_3]
-        # puts $fp [format "%-20s %-20s" r4_8 $r4_8]
-        # puts $fp [format "%-20s %-20s" r4_13 $r4_13]
-        # puts $fp [format "%-20s %-20s" r8_13 $r8_13]
-        # puts $fp [format "%-20s %-20s" r5_9 $r5_9]
-        # puts $fp [format "%-20s %-20s" r6_7 $r6_7]
+        puts $fp [format "%-20s %-20s" "Instance" "Distance"]
+        puts $fp [format "%-20s %-20s" r1_2 $r1_2]
+        puts $fp [format "%-20s %-20s" r1_3 $r1_3]
+        puts $fp [format "%-20s %-20s" r2_3 $r2_3]
+        puts $fp [format "%-20s %-20s" r4_8 $r4_8]
+        puts $fp [format "%-20s %-20s" r4_13 $r4_13]
+        puts $fp [format "%-20s %-20s" r8_13 $r8_13]
+        puts $fp [format "%-20s %-20s" r5_9 $r5_9]
+        puts $fp [format "%-20s %-20s" r6_7 $r6_7]
         # puts $fp "net_name: $net_name"
         # puts $fp "net_weight: $net_weight"
         # puts $fp "net_length: $net_length"
     close $fp
-    return $net_total_length
-    # "$net_total_length $mds"
+    return "$net_total_length $mds"
 }
 
 proc netLength {netName} {
