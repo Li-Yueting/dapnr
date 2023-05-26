@@ -13,11 +13,6 @@ proc nl_normalization {lst} {
     return $r
 }
 
-proc mds_normalization {lst} {
-    foreach item $lst { lappend r [expr ($item - 179683)/(680759.817 - 179683.836)]}
-    return $r
-}
-
 proc list_sum {lst1 lst2} {
     set ll [llength $lst1]
     for {set n 0} {$n < $ll} {incr n} {
@@ -43,7 +38,7 @@ proc population_pnr {base_dir gen design_name pop_size} {
     }
 
     set nl_norm [nl_normalization $nl]
-    set fitness $nl_norm
+    set fitness [expr -$nl_norm]
     set best [tcl::mathfunc::max {*}$fitness]
     set best_index [lsearch $fitness $best]
     set best_dir $base_dir/gen-$gen-id-$best_index
@@ -109,18 +104,7 @@ proc layout_summary {outdir design_name} {
         lappend net_length $length
         set net_total_length [expr $net_total_length + $length]
     }
-    # Objective 2 - Matching Distance Score
-    # set mds [get_matching_distance_score]
-    # lassign {1.09E-03 1.63E-02 8.99E-03 4.94E-02 1.26E-01 2.50E-03 2.50E-03 5.17E-02 1.26E-01 5.11E-06} u1 u2 u3 u4 u5 u6 u7 u8 u9 u13
-    # set r1_2 [inst_dist CM/M1 CM/M2]
-    # set r1_3 [inst_dist CM/M1 CM/M3]
-    # set r2_3 [inst_dist CM/M2 CM/M3]
-    # set r4_8 [inst_dist amp/M4 amp/M8]
-    # set r4_13 [inst_dist amp/M4 amp/M13]
-    # set r8_13 [inst_dist amp/M8 amp/M13]
-    # set r5_9 [inst_dist amp/M5 amp/M9]
-    # set r6_7 [inst_dist amp/M6 amp/M7]
-
+   
     # OUTPUT
     set fp [open $filename w+] ;# open the filename for writing
         puts $fp "Current Layout Characteristics"
