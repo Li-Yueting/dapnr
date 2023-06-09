@@ -41,7 +41,7 @@ class GeneUpdate:
 
         best_0 = self.best[0] if isinstance(self.best[0], list) else self.best[0].tolist()
         best_1 = self.best[1] 
-        best=best_0, best_1
+        # best=best_0, best_1
         extra = {
             "best_gene": best_0,
             "best_fitness": -best_1,
